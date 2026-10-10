@@ -28,7 +28,7 @@ button{background:none;border:1px solid var(--line);padding:3px 10px;cursor:poin
 button:focus-visible{background:var(--fg);color:var(--bg);outline:0}
 @media(hover:hover){button:hover{background:var(--fg);color:var(--bg)}}
 #links a{-webkit-touch-callout:none}
-#s{grid-area:s}#c{grid-area:c}#l{grid-area:l}#t{grid-area:t}#m{grid-area:m;padding:0;min-height:230px}#w{grid-area:w}#x{grid-area:x}#y{grid-area:y}
+#s{grid-area:s}#c{grid-area:c}#l{grid-area:l}#t{grid-area:t;display:flex;flex-direction:column;justify-content:center}#m{grid-area:m;padding:0;min-height:230px}#w{grid-area:w}#x{grid-area:x}#y{grid-area:y}
 #x,#y{display:flex;flex-direction:column;justify-content:center}
 #editBtn{position:absolute;top:10px;right:16px;z-index:3;font-size:13px}
 .row{display:flex;align-items:center;gap:1ch;padding:0 6px}
@@ -55,6 +55,25 @@ button:focus-visible{background:var(--fg);color:var(--bg);outline:0}
 #art.on #artimg{opacity:.3}
 #art:focus-visible{outline:1px solid var(--fg);outline-offset:3px}
 #artph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:12px;text-align:center;white-space:pre}
+/* cover art shapes: cd, vinyl, cassette */
+#art.s-cd,#art.s-vinyl{border-radius:50%}
+#art.s-cd{-webkit-mask:radial-gradient(circle closest-side,transparent 0 12%,#000 12.4%);mask:radial-gradient(circle closest-side,transparent 0 12%,#000 12.4%)}
+#art.s-vinyl{background:#0b0b0c repeating-radial-gradient(circle closest-side,#0b0b0c 0 2px,#1d1d20 2px 3px);-webkit-mask:radial-gradient(circle closest-side,transparent 0 3%,#000 3.4%);mask:radial-gradient(circle closest-side,transparent 0 3%,#000 3.4%)}
+#art.s-cd::before,#art.s-vinyl::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:50%}
+#art.s-cd::before{background:radial-gradient(circle closest-side,transparent 0 12%,var(--line) 12% 13%,rgba(236,236,236,.16) 13% 26%,var(--line) 26% 27%,transparent 27%),conic-gradient(from 25deg,transparent 0,rgba(255,255,255,.2) 7%,transparent 18%,transparent 50%,rgba(255,255,255,.2) 57%,transparent 68%)}
+#art.s-vinyl::before{background:conic-gradient(from 25deg,transparent 0,rgba(255,255,255,.1) 7%,transparent 18%,transparent 50%,rgba(255,255,255,.1) 57%,transparent 68%)}
+#art.s-vinyl #artimg{position:absolute;left:31%;top:31%;width:38%;height:38%;border-radius:50%;box-shadow:0 0 0 2px #0b0b0c,0 0 0 3px var(--line)}
+#art.s-vinyl #artph{inset:31%;border:1px solid var(--line);border-radius:50%;font-size:10px;background:var(--hi)}
+#art.s-cas{aspect-ratio:1.6;max-width:min(320px,100%);border-radius:10px}
+#art.s-cas #artimg{position:absolute;left:6.25%;top:7%;width:87.5%;height:48%;border:1px solid var(--line)}
+#art.s-cas #artph{inset:7% 6.25% auto;height:48%;border:1px solid var(--line)}
+#mk{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#art.s-cas #mk{display:block}
+#mk *{vector-effect:non-scaling-stroke}
+.reel{transform-box:fill-box;transform-origin:50% 50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+#art.s-cd.spin #artimg,#art.s-vinyl.spin #artimg,#art.s-cas.spin .reel{animation:spin 8s linear infinite}
+#art.s-cas.spin .reel{animation-duration:3s}
 #trk{text-align:center;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #ar{text-align:center;color:var(--dim);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-height:1.55em}
 #tm{text-align:center;color:var(--dim);font-size:12px;margin:10px 0 12px;white-space:pre;overflow:hidden}
@@ -108,8 +127,8 @@ body.col .lg img{filter:none;opacity:1}
   #cfg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0}
   #cfg input,#cfg select,#cfg textarea,#ld input[type=text]{font-size:16px}
   #cfg .cb{padding:18px 16px 6px}#cfg .ch,#cfg .cf{padding:12px 16px}}
-@media(pointer:coarse){button{min-height:40px;padding:6px 14px}#links a{padding:9px 6px}#cfg input[type=checkbox]{width:20px;height:20px}}
-@media(prefers-reduced-motion:reduce){.bl{animation:none}}
+@media(pointer:coarse){button{min-height:40px;padding:6px 14px}#editBtn{top:8px;right:12px}main{padding-top:62px}#links a{padding:9px 6px}#cfg input[type=checkbox]{width:20px;height:20px}}
+@media(prefers-reduced-motion:reduce){.bl{animation:none}#art.spin #artimg,#art.spin .reel{animation:none!important}}
 </style>
 </head>
 <body>
@@ -147,7 +166,7 @@ body.col .lg img{filter:none;opacity:1}
   </section>
 
   <section class="p" id="t"><h2>music</h2>
-    <div id="art" role="button" tabindex="0" title="click for visualizer"><img id="artimg" alt=""><div id="artph">no art</div><canvas id="viz"></canvas></div>
+    <div id="art" role="button" tabindex="0" title="click for visualizer"><img id="artimg" alt=""><div id="artph">no art</div><canvas id="viz"></canvas><svg id="mk" viewBox="0 0 160 100" aria-hidden="true" fill="none" stroke="var(--line)" stroke-width="1"><rect x="36" y="59" width="88" height="22" rx="11" fill="#0b0b0c"/><g class="reel"><circle cx="54" cy="70" r="8.5"/><circle cx="54" cy="70" r="3"/><path d="M54 61.5v5M54 73.5v5M46.5 70h5M56.5 70h5"/></g><g class="reel"><circle cx="106" cy="70" r="8.5"/><circle cx="106" cy="70" r="3"/><path d="M106 61.5v5M106 73.5v5M98.5 70h5M108.5 70h5"/></g><path d="M32 100L40 85H120L128 100"/><circle cx="60" cy="93" r="2"/><circle cx="100" cy="93" r="2"/><circle cx="7" cy="7" r="1.6"/><circle cx="153" cy="7" r="1.6"/><circle cx="7" cy="93" r="1.6"/><circle cx="153" cy="93" r="1.6"/></svg></div>
     <div id="trk">nothing playing</div><div id="ar"></div><div id="tm"></div>
     <div id="ctl"><button id="pv" type="button" aria-label="Previous track">[&lt;&lt;]</button><button id="pp" type="button" aria-label="Play or pause">[play]</button><button id="nx" type="button" aria-label="Next track">[&gt;&gt;]</button></div>
   </section>
@@ -174,6 +193,7 @@ add one in settings</div></div>
       <div><label for="cc">Time &amp; weather colour</label><select id="cc"><option value="grey">grey</option><option value="green">green</option><option value="cyan">cyan</option><option value="blue">blue</option><option value="purple">purple</option><option value="pink">pink</option><option value="red">red</option><option value="amber">amber</option><option value="rainbow">rainbow</option></select></div>
       <div><label for="mcl">Moon colour</label><select id="mcl"><option value="grey">grey</option><option value="green">green</option><option value="cyan">cyan</option><option value="blue">blue</option><option value="purple">purple</option><option value="pink">pink</option><option value="red">red</option><option value="amber">amber</option><option value="rainbow">rainbow</option></select></div>
       <div><label for="acl">Music cover colour</label><select id="acl"><option value="grey">grey</option><option value="original">original (album colours)</option><option value="green">green</option><option value="cyan">cyan</option><option value="blue">blue</option><option value="purple">purple</option><option value="pink">pink</option><option value="red">red</option><option value="amber">amber</option><option value="rainbow">rainbow</option></select></div>
+      <div><label for="ams">Cover art shape</label><select id="ams"><option value="square">square</option><option value="cd">cd</option><option value="vinyl">vinyl</option><option value="cas">cassette</option></select></div>
       <div><label for="tf">Time format</label><select id="tf"><option value="24">24-hour (military)</option><option value="12">12-hour</option></select></div>
       <div><label for="gl">Globe (double-click it to switch)</label><select id="gl"><option value="earth">earth</option><option value="solar">solar system</option><option value="saturn">saturn</option><option value="blackhole">black hole</option></select></div>
       <div><label for="si">Stats address</label><input id="si" placeholder="/stats"></div>
@@ -193,7 +213,7 @@ add one in settings</div></div>
 document.querySelectorAll(".p").forEach(p=>p.insertAdjacentHTML("beforeend","<i></i><i></i><i></i><i></i>"));
 const $=id=>document.getElementById(id);
 const fq=()=>{if(!matchMedia("(hover:none)").matches)$("q").focus()};
-const DEF={engine:"https://searx.example.org",links:"# streaming\nyoutube https://youtube.com\n\n# tools\nsearxng https://searx.example.org\nspeedtest https://speedtest.net\n\n# dev\ngithub https://github.com\nmdn https://developer.mozilla.org\n\n# misc\nmaps https://www.openstreetmap.org\nwiki https://en.wikipedia.org",unit:"f",wx:null,provider:"searxng",accent:"grey",mono:true,hideLoc:false,logos:{},stats:"/stats",music:"",clk:"grey",h24:true,viz:false,globe:"earth",moonc:"grey",artc:"grey"};
+const DEF={engine:"https://searx.example.org",links:"# streaming\nyoutube https://youtube.com\n\n# tools\nsearxng https://searx.example.org\nspeedtest https://speedtest.net\n\n# dev\ngithub https://github.com\nmdn https://developer.mozilla.org\n\n# misc\nmaps https://www.openstreetmap.org\nwiki https://en.wikipedia.org",unit:"f",wx:null,provider:"searxng",accent:"grey",mono:true,hideLoc:false,logos:{},stats:"/stats",music:"",clk:"grey",h24:true,viz:false,globe:"earth",moonc:"grey",artc:"grey",artm:"square"};
 let S;try{S=JSON.parse(localStorage.getItem("start2")||"null")}catch(e){}
 S=Object.assign({},DEF,S||{});
 const persist=()=>{try{localStorage.setItem("start2",JSON.stringify(S))}catch(e){say("Browser storage is blocked; changes won't be kept.",1)}};
@@ -226,8 +246,9 @@ function render(){
     h.textContent=g.name;d.appendChild(h);
     g.items.forEach(b=>{const a=document.createElement("a");a.href=b.url;a.target="_blank";a.rel="noopener noreferrer";a.dataset.u=b.url;a.title=b.url;a.append(logo(b),b.name);d.appendChild(a)});
     box.appendChild(d)});
-  $("ta").value=S.links;$("ei").value=S.engine;$("un").value=S.unit;$("mo").value=S.mono?"mono":"color";$("hl").checked=!!S.hideLoc;$("ac").value=S.accent||"grey";$("cc").value=S.clk||"grey";$("gl").value=S.globe||"earth";if(window.setGlobe)setGlobe();$("mcl").value=S.moonc||"grey";$("acl").value=S.artc||"grey";$("tf").value=S.h24?"24":"12";applyAccent();tick();$("sp").value=S.provider;$("si").value=S.stats;$("mu").value=S.music||"";$("wci").value=S.wx?S.wx.name:"";document.body.classList.toggle("col",!S.mono);
+  $("ta").value=S.links;$("ei").value=S.engine;$("un").value=S.unit;$("mo").value=S.mono?"mono":"color";$("hl").checked=!!S.hideLoc;$("ac").value=S.accent||"grey";$("cc").value=S.clk||"grey";$("gl").value=S.globe||"earth";if(window.setGlobe)setGlobe();$("mcl").value=S.moonc||"grey";$("acl").value=S.artc||"grey";$("ams").value=S.artm||"square";applyArtShape();$("tf").value=S.h24?"24":"12";applyAccent();tick();$("sp").value=S.provider;$("si").value=S.stats;$("mu").value=S.music||"";$("wci").value=S.wx?S.wx.name:"";document.body.classList.toggle("col",!S.mono);
 }
+function applyArtShape(){const a=$("art");a.classList.remove("s-cd","s-vinyl","s-cas");if(S.artm&&S.artm!=="square")a.classList.add("s-"+S.artm)}
 let lastT="";
 function tick(){const d=new Date(),p=n=>String(n).padStart(2,"0");let hr=d.getHours(),ap="";
   if(!S.h24){ap=hr<12?"am":"pm";hr=hr%12||12}
@@ -247,7 +268,7 @@ $("cx").onclick=()=>{$("cfg").close();render();fq()};
 $("cfg").addEventListener("click",e=>{if(e.target===$("cfg")){$("cfg").close();render()}});
 $("editBtn").onclick=()=>{$("cfg").showModal();if(!matchMedia("(hover:none)").matches)$("ei").focus()};
 $("save").onclick=async()=>{let msg="Saved.";say("");
-  S.engine=norm($("ei").value||S.engine).replace(/\/+$/,"");S.links=$("ta").value;S.unit=$("un").value;S.mono=$("mo").value==="mono";S.hideLoc=$("hl").checked;S.provider=$("sp").value;S.accent=$("ac").value;S.clk=$("cc").value;S.globe=$("gl").value;S.moonc=$("mcl").value;S.artc=$("acl").value;S.h24=$("tf").value==="24";
+  S.engine=norm($("ei").value||S.engine).replace(/\/+$/,"");S.links=$("ta").value;S.unit=$("un").value;S.mono=$("mo").value==="mono";S.hideLoc=$("hl").checked;S.provider=$("sp").value;S.accent=$("ac").value;S.clk=$("cc").value;S.globe=$("gl").value;S.moonc=$("mcl").value;S.artc=$("acl").value;S.artm=$("ams").value;S.h24=$("tf").value==="24";
   const st=$("si").value.trim();if(st)S.stats=/^(https?:\/\/|\/)/i.test(st)?st:"http://"+st;
   S.music=$("mu").value.trim().replace(/\/+$/,"");if(S.music&&!/^(https?:\/\/|\/)/i.test(S.music))S.music="http://"+S.music;
   const c=$("wci").value.trim();
@@ -341,21 +362,22 @@ const mt=s=>{s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+":"+String(s
 let artSrc="";
 async function mupdate(){let ok=true;
   try{const d=await(await fetch(MB()+"/media",{cache:"no-store"})).json(),img=$("artimg");
-    if(!d.active){VZ.playing=false;$("trk").textContent=d.supported===false&&!d.starting?"no track info":"nothing playing";
+    if(!d.active){setPlay(false);$("trk").textContent=d.supported===false&&!d.starting?"no track info":"nothing playing";
       $("ar").textContent=d.supported===false&&!d.starting?"set a music address in settings":"";$("tm").textContent="";$("pp").textContent="[play]";
       img.style.display="none";$("artph").style.display="flex";artSrc="";return ok}
     $("trk").textContent=d.title||"unknown";$("trk").title=d.title||"";
     $("ar").textContent=[d.artist,d.album].filter(Boolean).join(" - ");
-    $("pp").textContent=d.playing?"[pause]":"[play]";VZ.playing=!!d.playing;
+    $("pp").textContent=d.playing?"[pause]":"[play]";setPlay(!!d.playing);
     $("tm").textContent=d.dur>0?bar(d.pos/d.dur*100,22)+"\n"+mt(d.pos)+" / "+mt(d.dur):"";
     if(d.art){const u=MB()+d.art;if(u!==artSrc){artSrc=u;img.src=u;vcolor(u)}img.style.display="block";$("artph").style.display="none"}
     else{img.style.display="none";$("artph").style.display="flex";artSrc="";VZ.col=null}}
-  catch(e){ok=false;VZ.playing=false;$("trk").textContent="stats offline";$("ar").textContent="is the container running?";$("tm").textContent=""}
+  catch(e){ok=false;setPlay(false);$("trk").textContent="stats offline";$("ar").textContent="is the container running?";$("tm").textContent=""}
   return ok}
 (async function loop(){const ok=await mupdate();setTimeout(loop,ok?2000:6000)})();
 /* visualizer: click the cover. Real audio bands from the helper's /spectrum (Windows), otherwise a simulated animation. */
 const VZ={n:28,v:new Array(28).fill(0),t:new Array(28).fill(0),pk:new Array(28).fill(0),real:false,next:0,busy:false,playing:false,raf:0};
 VZ.col=null;
+const setPlay=p=>{VZ.playing=p;$("art").classList.toggle("spin",p)};
 async function vcolor(u){VZ.col=null;
   try{const b=await(await fetch(u)).blob(),bm=await createImageBitmap(b),c=document.createElement("canvas");c.width=c.height=24;
     const g=c.getContext("2d",{willReadFrequently:true});g.drawImage(bm,0,0,24,24);const d=g.getImageData(0,0,24,24).data;
@@ -383,7 +405,7 @@ function vframe(ts){VZ.raf=0;if(!$("art").classList.contains("on")||document.hid
   const d=Math.min(devicePixelRatio||1,2),w=vcv.clientWidth,h=vcv.clientHeight;
   if(vcv.width!==Math.round(w*d)||vcv.height!==Math.round(h*d)){vcv.width=Math.round(w*d);vcv.height=Math.round(h*d)}
   vx.setTransform(d,0,0,d,0,0);vx.clearRect(0,0,w,h);
-  const pad=14,gap=3,bw=(w-pad*2-gap*(n-1))/n,seg=6,sg=2,mh=h-pad*2,col=S.artc==="original"?(VZ.col||"#ececec"):pc(S.artc);
+  const A=$("art").classList,pad=A.contains("s-cd")||A.contains("s-vinyl")?Math.round(w*.16):14,gap=3,bw=(w-pad*2-gap*(n-1))/n,seg=6,sg=2,mh=h-pad*2,col=S.artc==="original"?(VZ.col||"#ececec"):pc(S.artc);
   vx.fillStyle=col;
   for(let i=0;i<n;i++){const a=VZ.t[i]>VZ.v[i]?.5:.14;VZ.v[i]+=(VZ.t[i]-VZ.v[i])*a;
     if(VZ.v[i]>VZ.pk[i])VZ.pk[i]=VZ.v[i];else VZ.pk[i]=Math.max(0,VZ.pk[i]-.006);
