@@ -1,0 +1,18 @@
+services:
+  startpage:
+    build: .
+    container_name: startpage
+    restart: unless-stopped
+    ports:
+      - "8787:8787"        # change the left number to use a different port on the host
+      - "80:8787"          # lets you open http://tyke.start with no port (remove if port 80 is already used)
+    # Optional: show an NVIDIA GPU in the stats panel (needs the NVIDIA container toolkit
+    # on the host). Uncomment these lines:
+    # environment:
+    #   NVIDIA_VISIBLE_DEVICES: all
+    #   NVIDIA_DRIVER_CAPABILITIES: utility
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - capabilities: [gpu]

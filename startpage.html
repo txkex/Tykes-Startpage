@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tyke</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<style>
+@font-face{font-family:"VFD Nova";src:url(data:font/woff;base64,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) format("woff");font-display:block}
+:root{--bg:#0b0b0c;--fg:#ececec;--dim:#8b8b90;--line:#9d9da3;--hi:#1a1a1d;--acc:#ececec}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.55 "JetBrains Mono","Cascadia Code",ui-monospace,Menlo,Consolas,monospace;letter-spacing:.02em}
+main{position:relative;z-index:1;display:grid;gap:22px;padding:50px 28px 28px;max-width:1500px;margin:0 auto;grid-template-columns:1fr 1.5fr 1fr;grid-template-areas:"s s s" "c l t" "w l t" "x y m"}
+.p{position:relative;background:rgba(11,11,12,.78);border:1px solid var(--line);padding:26px 20px 20px;min-width:0}
+.p>h2{position:absolute;top:-.85em;left:14px;margin:0;padding:0 8px;background:var(--bg);font-size:15px;font-weight:400;color:var(--dim)}
+.p>i{position:absolute;width:9px;height:9px;border:0 solid var(--acc)}
+.p>i:nth-of-type(1){top:6px;left:6px;border-top-width:1px;border-left-width:1px}
+.p>i:nth-of-type(2){top:6px;right:6px;border-top-width:1px;border-right-width:1px}
+.p>i:nth-of-type(3){bottom:6px;left:6px;border-bottom-width:1px;border-left-width:1px}
+.p>i:nth-of-type(4){bottom:6px;right:6px;border-bottom-width:1px;border-right-width:1px}
+button,input,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+html,body{cursor:url("<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><g fill='none' stroke='%230b0b0c' stroke-width='3'><path d='M12 2v7M12 15v7M2 12h7M15 12h7'/></g><g fill='none' stroke='%23ececec'><path d='M12 2v7M12 15v7M2 12h7M15 12h7'/><rect x='10.5' y='10.5' width='3' height='3'/></g></svg>") 12 12,crosshair}
+a,button,select,label,#eng,#clock,#art{cursor:url("<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><g fill='none' stroke='%230b0b0c' stroke-width='3'><path d='M12 2v6M12 16v6M2 12h6M16 12h6'/><rect x='9' y='9' width='6' height='6'/></g><g fill='none' stroke='%23ececec'><path d='M12 2v6M12 16v6M2 12h6M16 12h6'/></g><rect x='9.5' y='9.5' width='5' height='5' fill='%23ececec'/></svg>") 12 12,pointer}
+input,textarea{cursor:text}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+button{background:none;border:1px solid var(--line);padding:3px 10px;cursor:pointer}
+button:focus-visible{background:var(--fg);color:var(--bg);outline:0}
+@media(hover:hover){button:hover{background:var(--fg);color:var(--bg)}}
+#links a{-webkit-touch-callout:none}
+#s{grid-area:s}#c{grid-area:c}#l{grid-area:l}#t{grid-area:t}#m{grid-area:m;padding:0;min-height:230px}#w{grid-area:w}#x{grid-area:x}#y{grid-area:y}
+#x,#y{display:flex;flex-direction:column;justify-content:center}
+#editBtn{position:absolute;top:10px;right:16px;z-index:3;font-size:13px}
+.row{display:flex;align-items:center;gap:1ch;padding:0 6px}
+.row b{white-space:nowrap}#eng{display:inline-block;width:1.3em;height:1.05em;vertical-align:-.15em;background:currentColor;-webkit-mask:url(data:image/png;base64,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) center/contain no-repeat;mask:url(data:image/png;base64,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) center/contain no-repeat}#eng{cursor:pointer;user-select:none}#eng:hover{color:var(--dim)}.row span{color:var(--dim)}
+#q{flex:1;min-width:0;background:none;border:0;outline:0;caret-color:var(--fg);font-size:16px;padding:6px 0}
+#q::placeholder,#ta::placeholder{color:var(--dim)}
+.hint{font-size:11px;color:var(--dim)}
+#c{display:flex;flex-direction:column;justify-content:center}
+#clock{font:clamp(56px,8.4vw,116px)/1 "VFD Nova",ui-monospace,Menlo,Consolas,monospace;letter-spacing:0;text-align:center;padding:6px 0 10px;color:var(--clk,var(--fg));user-select:none}
+#clock .ck{position:relative;display:inline-block}
+#clock small{position:absolute;left:100%;bottom:.1em;margin-left:8px;font:12px/1 "JetBrains Mono","Cascadia Code",ui-monospace,Menlo,Consolas,monospace;letter-spacing:.02em;color:var(--dim)}
+.dg{display:inline-block;width:.2em;height:.2em;border:.05em solid currentColor;border-radius:.03em;vertical-align:.42em;margin:0 .04em 0 .08em}
+.bl{animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:.25}}
+#date{text-align:center;color:var(--dim)}
+#links{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:22px 18px}
+#links h3{margin:0 0 8px;font-size:12px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:4px;text-transform:none}
+#links a{display:block;color:var(--fg);text-decoration:none;padding:2px 6px;margin:0 -6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#links a:hover,#links a:focus-visible{background:var(--hi);outline:0}
+#art{position:relative;aspect-ratio:1;width:100%;max-width:280px;margin:0 auto 16px;border:1px solid var(--line);background:var(--hi);overflow:hidden}
+#artimg{display:none;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15)}
+#viz{position:absolute;inset:0;width:100%;height:100%;display:none;pointer-events:none}
+#art.on #viz{display:block}
+#art.on #artimg{opacity:.3}
+#art:focus-visible{outline:1px solid var(--fg);outline-offset:3px}
+#artph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:12px;text-align:center;white-space:pre}
+#trk{text-align:center;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ar{text-align:center;color:var(--dim);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-height:1.55em}
+#tm{text-align:center;color:var(--dim);font-size:12px;margin:10px 0 12px;white-space:pre;overflow:hidden}
+#ctl{display:flex;justify-content:center;gap:10px}
+#w{display:flex;flex-direction:column;justify-content:center}
+#wx{display:flex;gap:16px;align-items:center;justify-content:center}
+#wt{font:clamp(40px,4.6vw,60px)/1 "VFD Nova",ui-monospace,Menlo,Consolas,monospace;letter-spacing:0;white-space:nowrap;color:var(--clk,var(--fg))}
+#wd{text-align:center;color:var(--dim);font-size:12px;line-height:1.7;white-space:pre-line}
+#logo{margin:0 0 20px;font-family:"DejaVu Sans Mono","Segoe UI Symbol","Noto Sans Symbols 2",monospace;color:var(--acc);white-space:pre;overflow:hidden;letter-spacing:0;text-align:center}
+#logo span{display:inline-block}#gn{font-size:16px;font-weight:700;color:var(--fg);text-align:center;margin:0 0 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#gn:empty{display:none}#gc{display:block;width:100%;height:150px;margin:0 0 6px;cursor:grab;touch-action:pan-y}
+#st{display:grid;gap:12px;font-size:13px}
+.sr{display:grid;grid-template-columns:4.5ch 1fr 4ch;gap:1.2ch;align-items:center}
+.sr b{font-weight:400;color:var(--dim)}.sr u{text-decoration:none;text-align:right}
+.sb{height:12px;border:1px solid var(--line);padding:1px}
+.sb span{display:block;height:100%;width:calc(var(--v)*1%);background:repeating-linear-gradient(90deg,var(--acc) 0 6px,transparent 6px 8px)}
+.lg{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:8px;vertical-align:-4px}
+.lg img{width:16px;height:16px;object-fit:contain;filter:url(#tint);opacity:.85}
+body.col .lg img{filter:none;opacity:1}
+.lg.t{border:1px solid var(--line);font-size:11px;line-height:1;color:var(--line)}
+#ld{background:var(--bg);color:var(--fg);border:1px solid var(--line);padding:20px;width:min(420px,90vw)}
+#ld::backdrop{background:rgba(0,0,0,.65)}
+#ld input[type=text]{width:100%;background:var(--bg);border:1px solid var(--line);padding:6px 8px;margin:10px 0 14px}
+#ld .row{flex-wrap:wrap;padding:0}
+#moon{color:var(--moon,var(--fg));margin:0;font:inherit;font-size:12px;line-height:1.05;text-align:center;letter-spacing:0;white-space:pre}
+#moon .d{color:#44444a}
+#mi{text-align:center;color:var(--dim);font-size:12px;margin-top:10px}
+#cv{display:block;width:100%;height:100%}
+#cfg{background:var(--bg);color:var(--fg);border:1px solid var(--line);padding:0;width:min(760px,94vw);max-height:90vh}
+#cfg[open]{display:flex;flex-direction:column}
+#cfg::backdrop{background:rgba(0,0,0,.7)}
+#cfg .ch,#cfg .cf{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;flex:none}
+#cfg .ch{border-bottom:1px solid var(--line)}#cfg .cf{border-top:1px solid var(--line);justify-content:flex-start;gap:10px}
+#cfg h2{margin:0;font-size:15px;font-weight:400;color:var(--dim)}
+#cfg .cb{overflow:auto;padding:20px 22px 6px;flex:1;min-height:0}
+#cfg label{display:block;color:var(--dim);margin:0 0 4px;font-size:12px}
+#cfg input,#cfg textarea{width:100%;background:var(--bg);border:1px solid var(--line);padding:6px 8px;margin-bottom:14px}
+#cfg textarea{min-height:150px;resize:vertical}
+#cfg .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 18px}
+#cfg select{width:100%;background:var(--bg);color:inherit;font:inherit;border:1px solid var(--line);padding:6px 8px;margin-bottom:14px}
+#cfg input[type=checkbox]{width:auto;margin:0 8px 0 0;vertical-align:-2px}
+#cfg .ck{margin:0 0 14px;color:var(--fg)}
+@media(max-width:900px){main{grid-template-columns:1fr 1fr;grid-template-areas:"s s" "c w" "l l" "t y" "x m";gap:20px;padding:48px 16px 20px}
+  #m{height:300px;min-height:0}}
+@media(max-width:600px){main{grid-template-columns:minmax(0,1fr);grid-template-areas:"s" "c" "l" "w" "t" "y" "x" "m";gap:20px;padding:46px 12px 28px}
+  .p{padding:24px 14px 16px}
+  #f{flex-wrap:wrap;row-gap:4px}#f .hint{display:none}#eng{order:0}#f>span:not(.hint){order:1}
+  #q{order:3;flex:1 1 100%;border:1px solid var(--line);padding:11px 12px;margin-top:6px}
+  #clock{font-size:min(24vw,104px)}#wt{font-size:56px}
+  #links{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}
+  #art{max-width:min(280px,100%)}
+  #cfg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0}
+  #cfg input,#cfg select,#cfg textarea,#ld input[type=text]{font-size:16px}
+  #cfg .cb{padding:18px 16px 6px}#cfg .ch,#cfg .cf{padding:12px 16px}}
+@media(pointer:coarse){button{min-height:40px;padding:6px 14px}#links a{padding:9px 6px}#cfg input[type=checkbox]{width:20px;height:20px}}
+@media(prefers-reduced-motion:reduce){.bl{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<button id="editBtn" type="button">[settings]</button>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="tint" color-interpolation-filters="sRGB"><feColorMatrix id="tintm" type="matrix" values="0.2 0.7 0.07 0 0 0.2 0.7 0.07 0 0 0.2 0.7 0.07 0 0 0 0 0 1 0"/></filter><filter id="arttint" color-interpolation-filters="sRGB"><feColorMatrix id="arttintm" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter></svg>
+<main>
+  <section class="p" id="s"><h2>web-search</h2>
+    <form class="row" id="f" autocomplete="off">
+      <b id="eng" role="button" tabindex="0" aria-label="search engine, click to switch" title="click to switch search engine"></b><span>&gt;</span>
+      <input id="q" placeholder="search..." spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" aria-label="Search or command" autofocus>
+      <span class="hint">[ENTER]</span>
+    </form>
+    
+  </section>
+
+  <section class="p" id="c"><h2>datetime</h2>
+    <div id="clock"></div><div id="date"></div>
+  </section>
+
+  <section class="p" id="l"><h2>links</h2>
+    <pre id="logo" aria-hidden="true"><span>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠤⠤⠤⢀⣠⠀⠀⠀⢀⠀⠀⢀⣀⣀⣀⣿⠏⠀⠀⠀⠀⢀⣠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⡟⠀⠀⡀⠀⠀⠀⠀⠀⣀⡀⠀⠀⢀⠀⠀⠀⠀⠀⢀⣀⣀⠀⢀⣠⣤⠀⠀⢀⣀⣀⣀⡄⠀⠀⣠⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢠⡿⠿⠿⠿⠛⢛⣿⣿⣿⡅⠀⠀⣠⠞⣶⣿⢃⣠⡴⠞⠁⠀⣴⣿⡿⣿⠋⠃⠀⠀⠀⠀⣴⡟⣿⡆⠀⠀⠀⠀⠀⠀⢀⣴⣾⣿⠟⢻⡇⣠⣾⠃⢳⡀⠤⢶⣿⡿⠀⠀⢠⡮⠤⠶⠶⢾⣿⣿⠟⠁⢠⣾⣿⡏⠀⣠⣿⡿⣻⠟⠀⢀⣴⢻⣷⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠚⠀⠀⠀⠀⠀⣼⣿⡟⢹⣿⣤⣾⠋⢀⣿⣿⠿⠋⠀⠀⢀⣾⡿⠛⠘⢁⠀⠀⠀⠀⢠⣾⡟⠀⡿⠁⠀⠀⠀⢀⣤⣾⣿⣿⠿⠃⠀⢸⣵⣿⠃⠀⠈⣿⣄⣼⣿⠁⠀⢠⡟⠀⣴⡟⣠⡿⠋⠀⠀⣰⣿⠏⠸⢃⣴⣿⠟⠁⠃⡀⣴⣿⠇⢸⠏⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⡟⠀⠈⣿⣿⠃⠀⣸⡟⣧⡀⠀⠀⢀⠿⣿⡾⠃⣠⠋⠀⠀⠀⠀⠈⢿⣷⡸⠁⠀⠀⠀⠀⠀⠈⠉⠙⠛⠿⣶⣤⠈⣿⣿⠀⢀⣴⠟⢱⣿⠃⠀⢠⣿⠁⢰⡿⣼⡋⠀⠀⢀⢼⣿⡇⠀⡠⠿⣿⡷⠃⣠⠞⠀⠹⣿⣧⠃⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡟⠀⠀⢠⡿⠃⠀⢠⡟⠀⠙⣿⣦⡶⠋⢠⡟⣠⣾⠋⠀⠀⠀⠀⠀⠀⢈⣿⣷⠀⠀⠀⠀⠀⠀⢠⡆⠀⠀⣼⣿⠋⠀⢹⣿⣶⠟⠁⠀⣾⡟⢀⣤⣿⠇⠀⡿⠁⠘⢿⣶⣴⠋⢸⣿⣴⠞⠁⢠⣿⢁⣾⠋⠀⠀⠀⣸⣿⡆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡟⠀⠀⠀⡞⠁⠀⠀⠜⠀⠀⠀⠸⠟⠀⢀⣿⠿⠛⠁⠀⠀⠀⠀⠀⣠⡶⠟⠋⠁⠀⠀⠀⠀⠀⠀⣾⣇⠀⢰⡿⠃⠀⠀⠸⡿⠋⠀⠀⢸⡿⠾⠟⠛⠋⠀⠸⠁⠀⠀⠈⢿⠇⠀⠈⣿⠋⠀⠀⣾⡿⠟⠁⠀⢀⣰⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣷⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠈⠁⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</span></pre><div id="links"></div>
+  </section>
+
+  <section class="p" id="t"><h2>music</h2>
+    <div id="art" role="button" tabindex="0" title="click for visualizer"><img id="artimg" alt=""><div id="artph">no art</div><canvas id="viz"></canvas></div>
+    <div id="trk">nothing playing</div><div id="ar"></div><div id="tm"></div>
+    <div id="ctl"><button id="pv" type="button" aria-label="Previous track">[&lt;&lt;]</button><button id="pp" type="button" aria-label="Play or pause">[play]</button><button id="nx" type="button" aria-label="Next track">[&gt;&gt;]</button></div>
+  </section>
+
+  <section class="p" id="w"><h2>weather</h2>
+    <div id="wx"><div id="wt"></div><div id="wd">no location set.
+add one in settings</div></div>
+  </section>
+
+  <section class="p" id="x"><h2>stats</h2><canvas id="gc" aria-hidden="true"></canvas><div id="gn"></div><div id="st">waiting for helper...</div></section>
+
+  <section class="p" id="y"><h2>moon</h2><pre id="moon"></pre><div id="mi"></div></section>
+
+  <section class="p" id="m"><h2>globe</h2><canvas id="cv"></canvas></section>
+
+  <dialog id="cfg"><div class="ch"><h2>settings</h2><button id="cx" type="button" aria-label="Close settings">[x]</button></div><div class="cb">
+    <div class="g">
+      <div><label for="sp">Search with</label><select id="sp"><option value="searxng">searxng</option><option value="google">google</option></select></div>
+      <div><label for="ei">SearXNG instance URL</label><input id="ei" placeholder="http://192.168.1.10:8080"></div>
+      <div><label for="wci">Weather city</label><input id="wci" placeholder="city, state"></div>
+      <div><label for="un">Temperature units</label><select id="un"><option value="f">fahrenheit</option><option value="c">celsius</option></select></div>
+      <div><label for="mo">Link logos</label><select id="mo"><option value="mono">grayscale</option><option value="color">colour</option></select></div>
+      <div><label for="ac">Accent colour</label><select id="ac"><option value="grey">grey</option><option value="green">green</option><option value="cyan">cyan</option><option value="blue">blue</option><option value="purple">purple</option><option value="pink">pink</option><option value="red">red</option><option value="amber">amber</option><option value="rainbow">rainbow</option></select></div>
+      <div><label for="cc">Time &amp; weather colour</label><select id="cc"><option value="grey">grey</option><option value="green">green</option><option value="cyan">cyan</option><option value="blue">blue</option><option value="purple">purple</option><option value="pink">pink</option><option value="red">red</option><option value="amber">amber</option><option value="rainbow">rainbow</option></select></div>
+      <div><label for="mcl">Moon colour</label><select id="mcl"><option value="grey">grey</option><option value="green">green</option><option value="cyan">cyan</option><option value="blue">blue</option><option value="purple">purple</option><option value="pink">pink</option><option value="red">red</option><option value="amber">amber</option><option value="rainbow">rainbow</option></select></div>
+      <div><label for="acl">Music cover colour</label><select id="acl"><option value="grey">grey</option><option value="original">original (album colours)</option><option value="green">green</option><option value="cyan">cyan</option><option value="blue">blue</option><option value="purple">purple</option><option value="pink">pink</option><option value="red">red</option><option value="amber">amber</option><option value="rainbow">rainbow</option></select></div>
+      <div><label for="tf">Time format</label><select id="tf"><option value="24">24-hour (military)</option><option value="12">12-hour</option></select></div>
+      <div><label for="gl">Globe (double-click it to switch)</label><select id="gl"><option value="earth">earth</option><option value="solar">solar system</option><option value="saturn">saturn</option><option value="blackhole">black hole</option></select></div>
+      <div><label for="si">Stats address</label><input id="si" placeholder="/stats"></div>
+      <div><label for="mu">Music address (blank = this server)</label><input id="mu" placeholder="http://192.168.1.20:8787"></div>
+    </div>
+    <label class="ck"><input id="hl" type="checkbox"> hide location on the weather panel</label>
+    <label for="ta">Links: "# group" starts a section, then one "name url" per line (right-click or long-press a link to set its logo)</label>
+    <textarea id="ta" spellcheck="false"></textarea>
+    </div><div class="cf"><button id="save" type="button">[save]</button><button id="close" type="button">[close]</button><span id="msg" class="hint"></span></div></dialog>
+</main>
+<dialog id="ld"><div id="lt"></div>
+  <input id="lv" type="text" placeholder="emoji, letters, or image url" spellcheck="false">
+  <div class="row"><button id="lf" type="button">[upload]</button><button id="la" type="button">[auto]</button><button id="ls" type="button">[save]</button><button id="lc" type="button">[cancel]</button></div>
+  <input id="lfile" type="file" accept="image/*" hidden>
+</dialog>
+<script>
+document.querySelectorAll(".p").forEach(p=>p.insertAdjacentHTML("beforeend","<i></i><i></i><i></i><i></i>"));
+const $=id=>document.getElementById(id);
+const fq=()=>{if(!matchMedia("(hover:none)").matches)$("q").focus()};
+const DEF={engine:"https://searx.example.org",links:"# streaming\nyoutube https://youtube.com\n\n# tools\nsearxng https://searx.example.org\nspeedtest https://speedtest.net\n\n# dev\ngithub https://github.com\nmdn https://developer.mozilla.org\n\n# misc\nmaps https://www.openstreetmap.org\nwiki https://en.wikipedia.org",unit:"f",wx:null,provider:"searxng",accent:"grey",mono:true,hideLoc:false,logos:{},stats:"/stats",music:"",clk:"grey",h24:true,viz:false,globe:"earth",moonc:"grey",artc:"grey"};
+let S;try{S=JSON.parse(localStorage.getItem("start2")||"null")}catch(e){}
+S=Object.assign({},DEF,S||{});
+const persist=()=>{try{localStorage.setItem("start2",JSON.stringify(S))}catch(e){say("Browser storage is blocked; changes won't be kept.",1)}};
+const say=(t,e)=>{const l=$("msg");if(l){l.textContent=t;l.style.color=e?"#e0a45a":""}};
+const norm=u=>{u=u.trim();return/^https?:\/\//i.test(u)?u:"https://"+u};
+const host=u=>{try{return new URL(u).host}catch(e){return u}};
+
+const PAL={green:140,cyan:185,blue:215,purple:270,pink:320,red:0,amber:38};let hueT=0;
+function ac(a,off,br){const k=S.accent;if(!k||k==="grey")return"rgba("+(br?"236,236,236":"157,157,163")+","+a+")";const h=k==="rainbow"?(hueT+(off||0))%360:PAL[k];return"hsla("+h+",70%,"+(br?80:62)+"%,"+a+")"}
+const _cc=document.createElement("canvas").getContext("2d",{willReadFrequently:true});_cc.canvas.width=_cc.canvas.height=1;
+function rgbOf(c){_cc.clearRect(0,0,1,1);_cc.fillStyle="#000";_cc.fillStyle=c;_cc.fillRect(0,0,1,1);const p=_cc.getImageData(0,0,1,1).data;return[p[0]/255,p[1]/255,p[2]/255]}
+const pc=k=>{if(!k||k==="grey")return"#ececec";return"hsl("+(k==="rainbow"?hueT%360:PAL[k])+",70%,72%)"},ck=()=>pc(S.clk);
+function applyAccent(){const r=document.documentElement.style;r.setProperty("--clk",ck());r.setProperty("--moon",pc(S.moonc));
+  {const im=$("artimg"),m=$("arttintm");if(im){if(!S.artc||S.artc==="grey")im.style.filter="";else if(S.artc==="original")im.style.filter="none";else{im.style.filter="grayscale(1) contrast(1.15) url(#arttint)";
+    if(m)m.setAttribute("values",rgbOf(pc(S.artc)).map(c=>[.2126,.7152,.0722].map(w=>(c*w*1.25).toFixed(4)).join(" ")+" 0 0").join(" ")+" 0 0 0 1 0")}}}
+  r.setProperty("--acc",ac(1,0,1));r.setProperty("--line",!S.accent||S.accent==="grey"?"#9d9da3":ac(.75));
+  const m=$("tintm");if(m)m.setAttribute("values",rgbOf(ac(1,0,1)).map(c=>[.2126,.7152,.0722].map(w=>(Math.min(1,c*1.3)*w*1.3).toFixed(4)).join(" ")+" 0 0").join(" ")+" 0 0 0 1 0")}
+setInterval(()=>{if((S.accent==="rainbow"||S.clk==="rainbow"||S.moonc==="rainbow"||S.artc==="rainbow")&&!matchMedia("(prefers-reduced-motion:reduce)").matches){hueT=(hueT+2)%360;applyAccent()}},100);
+function groups(){const g=[];let cur=null;
+  S.links.split("\n").forEach(l=>{l=l.trim();if(!l)return;
+    if(l[0]==="#"){cur={name:l.replace(/^#\s*/,""),items:[]};g.push(cur);return}
+    const i=l.search(/\s/);if(i<0)return;
+    if(!cur){cur={name:"links",items:[]};g.push(cur)}
+    cur.items.push({name:l.slice(0,i),url:l.slice(i+1).trim()})});
+  return g}
+function render(){
+  $("eng").title="searching with "+(S.provider==="google"?"google":"searxng")+" - click to switch";
+  const box=$("links");box.innerHTML="";
+  groups().forEach(g=>{const d=document.createElement("div"),h=document.createElement("h3");
+    h.textContent=g.name;d.appendChild(h);
+    g.items.forEach(b=>{const a=document.createElement("a");a.href=b.url;a.target="_blank";a.rel="noopener noreferrer";a.dataset.u=b.url;a.title=b.url;a.append(logo(b),b.name);d.appendChild(a)});
+    box.appendChild(d)});
+  $("ta").value=S.links;$("ei").value=S.engine;$("un").value=S.unit;$("mo").value=S.mono?"mono":"color";$("hl").checked=!!S.hideLoc;$("ac").value=S.accent||"grey";$("cc").value=S.clk||"grey";$("gl").value=S.globe||"earth";if(window.setGlobe)setGlobe();$("mcl").value=S.moonc||"grey";$("acl").value=S.artc||"grey";$("tf").value=S.h24?"24":"12";applyAccent();tick();$("sp").value=S.provider;$("si").value=S.stats;$("mu").value=S.music||"";$("wci").value=S.wx?S.wx.name:"";document.body.classList.toggle("col",!S.mono);
+}
+let lastT="";
+function tick(){const d=new Date(),p=n=>String(n).padStart(2,"0");let hr=d.getHours(),ap="";
+  if(!S.h24){ap=hr<12?"am":"pm";hr=hr%12||12}
+  const t=(S.h24?p(hr):String(hr))+":"+p(d.getMinutes()),key=t+ap;
+  if(key!==lastT){lastT=key;$("clock").innerHTML='<span class="ck">'+t.replace(":",'<span class="bl">:</span>')+(ap?"<small>"+ap+"</small>":"")+"</span>"}
+  $("clock").title="click to switch 12/24-hour";
+  $("date").textContent=d.toLocaleDateString([],{weekday:"long",month:"long",day:"numeric",year:"numeric"}).toLowerCase()}
+tick();setInterval(tick,5000);
+$("clock").onclick=()=>{S.h24=!S.h24;persist();$("tf").value=S.h24?"24":"12";tick()};
+
+const searchUrl=q=>S.provider==="google"?"https://www.google.com/search?q="+encodeURIComponent(q):S.engine.replace(/\/+$/,"")+"/search?q="+encodeURIComponent(q);
+function run(raw){window.open(searchUrl(raw.trim()),"_blank","noopener,noreferrer")}
+$("f").onsubmit=e=>{e.preventDefault();const v=$("q").value;if(!v.trim())return;$("q").value="";run(v)};
+const swp=()=>{S.provider=S.provider==="google"?"searxng":"google";persist();render();fq()};
+$("eng").onclick=swp;$("eng").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();swp()}};
+$("cx").onclick=()=>{$("cfg").close();render();fq()};
+$("cfg").addEventListener("click",e=>{if(e.target===$("cfg")){$("cfg").close();render()}});
+$("editBtn").onclick=()=>{$("cfg").showModal();if(!matchMedia("(hover:none)").matches)$("ei").focus()};
+$("save").onclick=async()=>{let msg="Saved.";say("");
+  S.engine=norm($("ei").value||S.engine).replace(/\/+$/,"");S.links=$("ta").value;S.unit=$("un").value;S.mono=$("mo").value==="mono";S.hideLoc=$("hl").checked;S.provider=$("sp").value;S.accent=$("ac").value;S.clk=$("cc").value;S.globe=$("gl").value;S.moonc=$("mcl").value;S.artc=$("acl").value;S.h24=$("tf").value==="24";
+  const st=$("si").value.trim();if(st)S.stats=/^(https?:\/\/|\/)/i.test(st)?st:"http://"+st;
+  S.music=$("mu").value.trim().replace(/\/+$/,"");if(S.music&&!/^(https?:\/\/|\/)/i.test(S.music))S.music="http://"+S.music;
+  const c=$("wci").value.trim();
+  if(c&&c!==(S.wx&&S.wx.name)){try{const w=await geo(c);if(w)S.wx=w;else msg="Saved, but no place found for "+c}catch(e){msg="Saved, but could not reach the geocoding service."}}
+  persist();loadWx();render();if(msg!=="Saved."){$("wci").value=c;say(msg,1);return}$("cfg").close();fq()};
+$("close").onclick=()=>{$("cfg").close();render();fq()};
+addEventListener("keydown",e=>{const t=document.activeElement.tagName;if(e.key==="/"&&t!=="INPUT"&&t!=="TEXTAREA"){e.preventDefault();$("q").focus()}});
+
+/* logos */
+function logo(b){const s=document.createElement("span"),c=S.logos[b.url];s.className="lg";
+  const tile=t=>{s.className="lg t";s.textContent=t};
+  if(c&&!/^(data:|https?:)/i.test(c)){tile(c);return s}
+  let o="";try{o=new URL(b.url).origin}catch(e){}
+  const srcs=c?[c]:["https://icons.duckduckgo.com/ip3/"+host(b.url)+".ico",o+"/favicon.ico"];let n=0;
+  const im=new Image();im.alt="";im.onerror=()=>{if(++n<srcs.length)im.src=srcs[n];else tile((b.name[0]||"?").toUpperCase())};
+  im.src=srcs[0];s.appendChild(im);return s}
+const LG=$("ld");let LU=null;
+const openLogo=a=>{if(LG.open)return;LU=a.dataset.u;const c=S.logos[LU]||"";
+  $("lt").textContent="logo for "+a.textContent;$("lv").value=c.startsWith("data:")?"":c;LG.showModal();$("lv").focus()};
+$("links").addEventListener("contextmenu",e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();openLogo(a)});
+let lp=0,lpDone=false;const L_=$("links");
+L_.addEventListener("touchstart",e=>{const a=e.target.closest("a");if(!a)return;lpDone=false;clearTimeout(lp);lp=setTimeout(()=>{lpDone=true;openLogo(a)},600)},{passive:true});
+["touchmove","touchend","touchcancel"].forEach(t=>L_.addEventListener(t,()=>clearTimeout(lp),{passive:true}));
+L_.addEventListener("click",e=>{if(lpDone){e.preventDefault();lpDone=false}});
+const lset=v=>{if(v)S.logos[LU]=v;else delete S.logos[LU];persist();render();LG.close()};
+$("ls").onclick=()=>lset($("lv").value.trim());$("la").onclick=()=>lset("");$("lc").onclick=()=>LG.close();
+$("lv").onkeydown=e=>{if(e.key==="Enter")$("ls").click()};
+$("lf").onclick=()=>$("lfile").click();
+$("lfile").onchange=e=>{const f=e.target.files[0];e.target.value="";if(!f)return;const r=new FileReader();
+  r.onload=()=>{const im=new Image();im.onload=()=>{const W=im.width||48,H=im.height||48,k=Math.min(48/W,48/H),c=document.createElement("canvas");c.width=c.height=48;
+    c.getContext("2d").drawImage(im,(48-W*k)/2,(48-H*k)/2,W*k,H*k);lset(c.toDataURL("image/png"))};
+    im.onerror=()=>say("Could not read that image.",1);im.src=r.result};r.readAsDataURL(f)};
+
+/* geocoding: "archdale", "archdale, nc", "archdale north carolina", zip codes */
+const ST=Object.fromEntries("al alabama,ak alaska,az arizona,ar arkansas,ca california,co colorado,ct connecticut,de delaware,dc district of columbia,fl florida,ga georgia,hi hawaii,id idaho,il illinois,in indiana,ia iowa,ks kansas,ky kentucky,la louisiana,me maine,md maryland,ma massachusetts,mi michigan,mn minnesota,ms mississippi,mo missouri,mt montana,ne nebraska,nv nevada,nh new hampshire,nj new jersey,nm new mexico,ny new york,nc north carolina,nd north dakota,oh ohio,ok oklahoma,or oregon,pa pennsylvania,ri rhode island,sc south carolina,sd south dakota,tn tennessee,tx texas,ut utah,vt vermont,va virginia,wa washington,wv west virginia,wi wisconsin,wy wyoming".split(",").map(x=>{const i=x.indexOf(" ");return[x.slice(0,i),x.slice(i+1)]}));
+async function geo(q){const t=q.split(/[\s,]+/).filter(Boolean);
+  for(let k=t.length;k>0;k--){
+    const hint=t.slice(k).map(x=>(ST[x.toLowerCase()]||x).toLowerCase());
+    const j=await(await fetch("https://geocoding-api.open-meteo.com/v1/search?count=20&name="+encodeURIComponent(t.slice(0,k).join(" ")))).json();
+    const g=(j.results||[]).find(g=>hint.every(h=>[g.admin1,g.admin2,g.country,g.country_code].some(v=>v&&v.toLowerCase().includes(h))));
+    if(g)return{name:g.name+(g.admin1?", "+g.admin1:""),lat:g.latitude,lon:g.longitude}}
+  const n=(await(await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&q="+encodeURIComponent(q))).json())[0];
+  if(!n)return null;const a=n.address||{};
+  return{name:(a.city||a.town||a.village||a.hamlet||n.name||q)+(a.state||a.country?", "+(a.state||a.country):""),lat:+n.lat,lon:+n.lon}}
+
+/* weather */
+const WMO={0:"clear",1:"mostly clear",2:"partly cloudy",3:"overcast",45:"fog",48:"fog",51:"light drizzle",53:"drizzle",55:"heavy drizzle",56:"freezing drizzle",57:"freezing drizzle",61:"light rain",63:"rain",65:"heavy rain",66:"freezing rain",67:"freezing rain",71:"light snow",73:"snow",75:"heavy snow",77:"snow grains",80:"showers",81:"showers",82:"heavy showers",85:"snow showers",86:"snow showers",95:"thunderstorm",96:"thunderstorm, hail",99:"thunderstorm, hail"};
+async function loadWx(){const w=S.wx;if(!w)return;const c=S.unit==="c";
+  try{const r=await fetch("https://api.open-meteo.com/v1/forecast?latitude="+w.lat+"&longitude="+w.lon+"&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m&temperature_unit="+(c?"celsius":"fahrenheit")+"&wind_speed_unit="+(c?"kmh":"mph"));
+    const d=(await r.json()).current;
+    $("wt").innerHTML=Math.round(d.temperature_2m)+'<i class="dg"></i>'+(c?"C":"F");
+    $("wd").textContent=(S.hideLoc?"location hidden":w.name)+"\n"+(WMO[d.weather_code]||"unknown")+"\nhum "+d.relative_humidity_2m+"%  wind "+Math.round(d.wind_speed_10m)+(c?" kmh":" mph")+"\nfeels "+Math.round(d.apparent_temperature)+"\u00b0"}
+  catch(e){$("wt").innerHTML="";$("wd").textContent="weather unavailable.\ncheck your connection."}}
+
+/* moon */
+function moon(){const SYN=29.530588853,age=(((Date.now()-Date.UTC(2000,0,6,18,14))/864e5)%SYN+SYN)%SYN,p=age/SYN,k=Math.cos(2*Math.PI*p),pre=$("moon");
+  pre.textContent="";const pr=document.createElement("span");pr.textContent="@".repeat(20);pre.appendChild(pr);
+  const cw=pr.getBoundingClientRect().width/20||7.2,lh=parseFloat(getComputedStyle(pre).lineHeight)||12.6,
+    D=Math.max(120,Math.min(pre.parentElement.clientWidth-48,250)),cols=Math.round(D/cw),rows=Math.round(D/lh);
+  let out="";
+  for(let j=0;j<rows;j++){const y=(j+.5)/rows*2-1,r=Math.sqrt(Math.max(0,1-y*y));let cls="",line="";
+    for(let i=0;i<cols;i++){const x=(i+.5)/cols*2-1;let c,t;
+      if(x*x+y*y>1){c=" ";t=""}else{const lit=p<.5?x>k*r:x<-k*r;c=lit?"@":"\u00b7";t=lit?"":"d"}
+      if(t!==cls){if(cls)line+="</span>";if(t)line+='<span class="'+t+'">';cls=t}
+      line+=c}
+    if(cls)line+="</span>";out+=line+"\n"}
+  pre.innerHTML=out;
+  const n=p<.03||p>=.97?"new moon":p<.22?"waxing crescent":p<.28?"first quarter":p<.47?"waxing gibbous":p<.53?"full moon":p<.72?"waning gibbous":p<.78?"last quarter":"waning crescent";
+  const full=Math.round(((.5-p+1)%1)*SYN),nw=Math.round(((1-p)%1)*SYN);
+  $("mi").textContent=n+", "+Math.round((1-k)/2*100)+"% lit\nfull in "+full+"d, new in "+nw+"d";$("mi").style.whiteSpace="pre-line"}
+addEventListener("resize",()=>{clearTimeout(moon.t);moon.t=setTimeout(moon,150)});
+
+/* stats */
+const bar=(v,n=14)=>{v=Math.max(0,Math.min(100,v||0));const f=Math.round(v/100*n);return"\u2588".repeat(f)+"\u2591".repeat(n-f)};
+const pct=v=>String(Math.round(v)).padStart(3)+"%";
+async function poll(){let wait=2000;
+  const row=(l,v)=>{v=Math.max(0,Math.min(100,v||0));return'<div class="sr"><b>'+l+'</b><div class="sb"><span style="--v:'+v+'"></span></div><u>'+Math.round(v)+'%</u></div>'},
+    note=t=>'<div class="hint">'+t.replace(/[<>&]/g,"")+'</div>';
+  try{const d=await(await fetch(S.stats,{cache:"no-store"})).json(),L=[];
+    L.push(d.cpu==null?note("cpu: install psutil"):row("cpu",d.cpu));
+    L.push(d.ram==null?note("ram: install psutil"):row("ram",d.ram));
+    if(d.gpu){const g=d.gpu;window.gpuU=g.util;$("gn").textContent=g.name.replace(/^NVIDIA\s+/,"")+"  "+Math.round(g.temp)+"\u00b0C";L.push(row("gpu",g.util),row("vram",g.mem_used/g.mem_total*100))}
+    else{window.gpuU=null;$("gn").textContent="";L.push(note("gpu: none found (nvidia-smi)"))}
+    $("st").innerHTML=L.join("")}
+  catch(e){window.gpuU=null;$("gn").textContent="";$("st").innerHTML=note("stats offline")+note("is the container running?");wait=6000}
+  setTimeout(poll,wait)}
+
+/* music */
+const MB=()=>S.music||S.stats.replace(/\/stats\/?$/,"");
+const mt=s=>{s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+let artSrc="";
+async function mupdate(){let ok=true;
+  try{const d=await(await fetch(MB()+"/media",{cache:"no-store"})).json(),img=$("artimg");
+    if(!d.active){VZ.playing=false;$("trk").textContent=d.supported===false&&!d.starting?"no track info":"nothing playing";
+      $("ar").textContent=d.supported===false&&!d.starting?"set a music address in settings":"";$("tm").textContent="";$("pp").textContent="[play]";
+      img.style.display="none";$("artph").style.display="flex";artSrc="";return ok}
+    $("trk").textContent=d.title||"unknown";$("trk").title=d.title||"";
+    $("ar").textContent=[d.artist,d.album].filter(Boolean).join(" - ");
+    $("pp").textContent=d.playing?"[pause]":"[play]";VZ.playing=!!d.playing;
+    $("tm").textContent=d.dur>0?bar(d.pos/d.dur*100,22)+"\n"+mt(d.pos)+" / "+mt(d.dur):"";
+    if(d.art){const u=MB()+d.art;if(u!==artSrc){artSrc=u;img.src=u;vcolor(u)}img.style.display="block";$("artph").style.display="none"}
+    else{img.style.display="none";$("artph").style.display="flex";artSrc="";VZ.col=null}}
+  catch(e){ok=false;VZ.playing=false;$("trk").textContent="stats offline";$("ar").textContent="is the container running?";$("tm").textContent=""}
+  return ok}
+(async function loop(){const ok=await mupdate();setTimeout(loop,ok?2000:6000)})();
+/* visualizer: click the cover. Real audio bands from the helper's /spectrum (Windows), otherwise a simulated animation. */
+const VZ={n:28,v:new Array(28).fill(0),t:new Array(28).fill(0),pk:new Array(28).fill(0),real:false,next:0,busy:false,playing:false,raf:0};
+VZ.col=null;
+async function vcolor(u){VZ.col=null;
+  try{const b=await(await fetch(u)).blob(),bm=await createImageBitmap(b),c=document.createElement("canvas");c.width=c.height=24;
+    const g=c.getContext("2d",{willReadFrequently:true});g.drawImage(bm,0,0,24,24);const d=g.getImageData(0,0,24,24).data;
+    let R=0,G=0,B=0,W=0,L=0;
+    for(let i=0;i<d.length;i+=4){const r=d[i]/255,gg=d[i+1]/255,bb=d[i+2]/255,mx=Math.max(r,gg,bb),mn=Math.min(r,gg,bb),sat=mx?(mx-mn)/mx:0,wt=sat*sat*(.25+mx)+.001;
+      R+=r*wt;G+=gg*wt;B+=bb*wt;W+=wt;L+=(r+gg+bb)/3}
+    const r=R/W,g2=G/W,b2=B/W,mx=Math.max(r,g2,b2),mn=Math.min(r,g2,b2),l=(mx+mn)/2,dl=mx-mn;let h=0,sa=0;
+    if(dl>.04){sa=dl/(1-Math.abs(2*l-1));h=mx===r?((g2-b2)/dl+(g2<b2?6:0)):mx===g2?(b2-r)/dl+2:(r-g2)/dl+4;h*=60}
+    else{VZ.col="hsl(0,0%,"+Math.round(Math.max(.6,Math.min(.92,L/(d.length/4)+.3))*100)+"%)";return}
+    VZ.col="hsl("+Math.round(h)+","+Math.round(Math.min(.9,Math.max(.45,sa))*100)+"%,66%)"}
+  catch(e){VZ.col=null}}
+const vcv=$("viz"),vx=vcv.getContext("2d");
+async function vpoll(){if(VZ.busy||Date.now()<VZ.next)return;VZ.busy=true;
+  try{const d=await(await fetch(MB()+"/spectrum",{cache:"no-store"})).json();
+    if(d&&d.ok&&d.bands){VZ.real=true;for(let i=0;i<VZ.n;i++)VZ.t[i]=Math.max(0,Math.min(1,+d.bands[i]||0))}
+    else{VZ.real=false;VZ.next=Date.now()+(d&&d.starting?2000:30000)}}
+  catch(e){VZ.real=false;VZ.next=Date.now()+30000}
+  VZ.busy=false}
+function vframe(ts){VZ.raf=0;if(!$("art").classList.contains("on")||document.hidden)return;
+  const n=VZ.n,t=ts/1000;
+  if(VZ.playing)vpoll();
+  if(!(VZ.real&&VZ.playing)){
+    for(let i=0;i<n;i++){const f=i/(n-1),env=VZ.playing?(.82-.5*f):0;
+      VZ.t[i]=Math.max(0,env*(.5+.5*Math.sin(t*(2.1+i*.37)+i*1.7)*Math.sin(t*(.9+i*.11)+i*.6)+.22*Math.sin(t*7.3+i*2.1)))}}
+  const d=Math.min(devicePixelRatio||1,2),w=vcv.clientWidth,h=vcv.clientHeight;
+  if(vcv.width!==Math.round(w*d)||vcv.height!==Math.round(h*d)){vcv.width=Math.round(w*d);vcv.height=Math.round(h*d)}
+  vx.setTransform(d,0,0,d,0,0);vx.clearRect(0,0,w,h);
+  const pad=14,gap=3,bw=(w-pad*2-gap*(n-1))/n,seg=6,sg=2,mh=h-pad*2,col=S.artc==="original"?(VZ.col||"#ececec"):pc(S.artc);
+  vx.fillStyle=col;
+  for(let i=0;i<n;i++){const a=VZ.t[i]>VZ.v[i]?.5:.14;VZ.v[i]+=(VZ.t[i]-VZ.v[i])*a;
+    if(VZ.v[i]>VZ.pk[i])VZ.pk[i]=VZ.v[i];else VZ.pk[i]=Math.max(0,VZ.pk[i]-.006);
+    const x=pad+i*(bw+gap),k=Math.floor(VZ.v[i]*mh/(seg+sg));
+    for(let j=0;j<k;j++)vx.fillRect(x,h-pad-(j+1)*(seg+sg)+sg,bw,seg);
+    const pj=Math.floor(VZ.pk[i]*mh/(seg+sg));if(pj>k){vx.globalAlpha=.55;vx.fillRect(x,h-pad-(pj+1)*(seg+sg)+sg,bw,seg);vx.globalAlpha=1}}
+  VZ.raf=requestAnimationFrame(vframe)}
+function vset(on){$("art").classList.toggle("on",on);if(on&&!VZ.raf)VZ.raf=requestAnimationFrame(vframe)}
+const vtog=()=>{S.viz=!S.viz;persist();vset(S.viz)};
+$("art").onclick=vtog;$("art").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();vtog()}};
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&S.viz)vset(true)});
+const mctl=c=>fetch(MB()+"/media/"+c,{method:"POST"}).then(()=>setTimeout(mupdate,400)).catch(()=>{});
+$("pv").onclick=()=>mctl("prev");$("pp").onclick=()=>mctl("play_pause");$("nx").onclick=()=>mctl("next");
+
+/* globe: dotted orthographic Earth, spinning. Continent outlines are coarse hand-drawn polygons. */
+(function(){const cv=$("cv"),x=cv.getContext("2d");
+const LAND=[[-168,65.5,-165,68.5,-156,71.3,-141,69.6,-128,70,-115,68.5,-108,68,-95,68.5,-90,69,-85,69.5,-82,67,-87,64,-94,60,-93,57,-88,56.5,-82,55,-79,52,-79,57,-77,60,-78,62.5,-72,61.5,-65,60,-62,57,-56,53,-60,50,-66,50,-71,47,-64,48,-61,46,-66,44.5,-70,43,-70,41.7,-74,40.5,-76,38,-76,35,-78,33.5,-81,31,-80,27,-80,25.2,-82,26.5,-83,29.5,-85,29.7,-89,30.2,-90,29,-94,29.5,-97,27,-97.5,22,-96,19,-94.5,18.2,-91,18.8,-90.5,21,-87,21.5,-88,18,-88.5,16,-84,15.8,-83.3,12,-83.7,10.5,-82,9,-79.5,9.5,-77.5,8.5,-78.2,7.2,-80,7.4,-81,8.2,-83.5,8.5,-85.7,10,-87.5,13,-91,14,-94,16,-97,15.8,-101,17.3,-105.5,20,-105.5,22.5,-109,25.5,-112.5,29.5,-114.7,31.7,-117,32.5,-120.5,34.5,-122.5,37.5,-124,40.5,-124,46,-124.5,48.5,-123,49,-127,51,-130,54.5,-133,57,-137,58.5,-141,60,-148,60.5,-152,59,-157,57.5,-162,55,-158,58.5,-162,59.5,-165,61,-166,63,-161,64.5],[-80,73,-72,71.5,-67,69,-62,66.5,-65,63,-72,62.5,-78,64.5,-74,67,-80,70,-90,73],[-90,76.5,-75,78.5,-62,82,-80,83,-92,81],[-118,72,-105,73,-100,70,-110,68.5,-118,70],[-73,78,-60,82,-35,83.5,-20,82,-18,76,-20,70,-22,68.5,-32,68,-40,65,-43,60,-48,61,-52,64.5,-54,68,-58,75.5,-68,76],[-59,47.6,-55,49.5,-53,47,-53.5,46.6],[-84.9,21.9,-82,23.2,-79,22.6,-77,21.5,-74.2,20.2,-77.5,19.9,-80,21.6],[-74.4,18.4,-72,19.9,-69,19.2,-68.4,18.5,-71,17.8],[-77.5,8.5,-76,9.5,-74.5,11,-71.5,12,-70,11.5,-68,10.5,-64,10.7,-61.5,10.5,-60,8.5,-57,6,-54,5.8,-51.5,4.5,-50,1.8,-48,-0.5,-44.5,-2.5,-40,-3,-37,-5,-35,-7,-35,-9.5,-37.5,-12,-39,-14,-39,-18,-41,-22,-44,-23,-48,-26,-48.5,-28.5,-51,-31,-53.5,-34,-57,-35,-57,-37.5,-62,-39,-62.5,-41,-65,-41,-64,-43,-67.5,-46,-66,-47.5,-68.5,-50,-69,-52.5,-68.5,-54,-72,-54,-74.5,-51,-75.5,-47,-73.5,-42.5,-73.5,-37,-71.5,-30,-70.5,-23,-70.2,-18.5,-76,-14,-78,-10,-80.5,-6,-81,-4,-80,-2,-80.5,0,-78.8,1.5,-77.5,4,-77.4,6.5],[-17,21,-16,24,-13,27.5,-10,29.5,-9.5,32,-6,35.8,-2,35,3,36.8,10,37.3,11,35,10.2,33.5,15,32.3,19.5,30.3,20,32.5,25,32,29,30.8,32.3,31.2,32.5,30,33.5,27.5,35.5,23.5,37.2,19,39,15.5,41.5,13.5,43.2,11.8,44,10.5,48,11.2,51.2,11.8,51,10.2,49,6,46,2,43,-1,41,-2,39.5,-5,39,-8,40.5,-11,40.5,-15,36,-19,35,-22,35.5,-24,33,-26,32.8,-28.5,30,-31.5,27,-33.5,22,-34.2,19,-34.5,18,-32,16.5,-28.5,15,-26,14.5,-22.5,12,-18,13.5,-12,13,-9,12,-6,9,-1,9.5,3.5,8.5,4.5,6,4.3,4,6.3,1,6,-2,4.8,-5,5.2,-8,4.5,-11,6.5,-13.2,9,-15,11,-16.8,13.5,-17.5,15,-16.5,18],[49.3,-12,50.3,-15.5,49.5,-18,47.5,-24.5,45,-25.3,43.5,-22.5,44,-17,46,-15.8,48,-13.5],[-9,37,-9.5,39,-8.8,42,-9.3,43,-2,43.4,-1.5,46,-4.5,48,-1.5,48.7,1.5,50.5,4,51.5,8,53.5,8.5,56.5,10.5,57.7,10.5,55,12,54.2,14,54,19,54.5,21,57,24,57.3,24,59.3,30,60,23,60.2,21.5,61.2,21.5,63,25,65,22,65.8,17.5,62.5,17,60.5,19,59.8,16.5,57,14,55.5,12.5,56.2,11.5,59,8,58,5.5,59,5,62,10,64,14,67.5,19,70,26,71,31,70,40,68,44,68.5,53,68.8,60,69.5,68,71.5,73,72.5,80,73,87,75.5,100,77,105,77.7,113,74,128,73,140,72.5,150,71.5,160,70,170,69.8,180,68.8,180,65.2,177,62.5,171,60.2,164,59.8,162,56.5,157,51,156,54,156,57.5,159,61,154,59.4,150,59.5,143,59.2,141,54,138,54,140.5,51,140.5,48,135,43.5,131,42.5,129.7,41,128,38.7,129.4,36,129,35,126.5,34.5,126.3,37,125,39.5,121.5,39,122,40.5,119.5,39.5,118,38.5,119,37.2,122.5,37.3,120,36,119,34.5,121.5,32,122,30.5,121,28,119.5,25.5,117,23.5,114,22.3,110.5,21,109.5,21.7,108,21.5,106.7,20,105.8,19,106.5,17.5,108.5,15,109.3,13,109,11.5,107,10.3,105,8.6,104.8,10,103,10.8,102.5,12.2,100.9,13.4,99.8,11.5,99.2,9.2,100.4,7.2,101.8,6.7,103.4,5,103.5,2.4,104.2,1.4,102.3,2.2,100.5,4.5,98.6,8,98.5,10.5,98.5,13.2,97.5,16.5,95.5,15.8,94.2,16.2,94.4,18.5,92.5,20.8,91.5,22.5,89.5,21.8,87,21.5,86.5,19.8,84.5,18.2,82.2,16.5,80.3,15.8,80,13,79.8,10.5,78.2,8.9,77.5,8.1,76.3,9.5,74.8,12.8,73.5,16,72.8,19,72.8,21.2,70.5,20.8,69,22.2,70,23.2,68.5,23.5,66.5,25.4,62,25.2,58,25.6,57,27,54,26.7,51.5,27.9,50,30,48.5,30,48,29.5,50,26.5,51.5,25.2,51.3,24.2,54,24.2,56,26,56.5,24.5,58.5,23.5,59.8,22.3,58,20.4,55,17.1,52,16,48,14,43.5,12.7,42.8,15,40,19,38.5,22,37,24.5,35,28,34.9,29.5,34.2,31.3,34.9,32.8,35.8,34.8,36.2,36.6,34,36.2,32,36.5,30,36.3,28,36.7,27.3,37.8,26.5,39.5,26.2,40.2,26,40.8,24,40.8,23,40.2,22.8,38,24,37.8,23,36.5,21.5,36.8,21.2,38.3,20.2,39.7,19.5,41.5,18.5,42.5,16,43.5,14,45,12.5,45.5,12.3,44.5,13.5,43.6,14.7,42,16,41.8,18.5,40.2,17.2,39.2,16.5,38.2,15.7,37.9,15.8,39,15.5,40,14,40.8,12,41.5,10.5,43,9,44.3,7.5,43.8,5,43.3,3.5,43.2,3,42,0.5,40.5,-0.5,38.8,-2,36.8,-5,36,-6.2,36.8,-7.5,37.2],[-180,69,-174,67.5,-169.5,66.2,-171.5,64.6,-178,65.3,-180,65.2],[-5.5,50,1.4,51.2,1.6,52.8,-0.2,53.6,-1.6,55.3,-2.5,56.2,-1.8,57.6,-3.5,58.6,-5,58.6,-6,56.8,-5,55.3,-3.5,54.8,-3,53.4,-4.7,52.5,-4.2,51.6,-5.2,51.8,-3.2,51.4],[-10,51.8,-6,52.2,-6,54,-5.7,54.7,-7.5,55.2,-10,54],[-24,65.5,-22,66.4,-16,66.5,-13.5,65,-18,63.4,-22.5,63.8],[130.8,33.9,132,34.5,135,35.5,137,37,139.5,38.5,140,40.5,141.5,41.5,142,39.5,141,37,140.8,35.5,139.8,35,137,34.5,135.2,33.6,133,34],[140,42,141.5,45.4,145.5,43.4,143,42],[129.8,33,131.5,34,132,31.5,130.5,31],[142,46,143.5,49,143,53.5,142,54,142,50],[120.2,23,121.5,25,122,24.5,121,22],[108.7,19.2,110.5,20.1,111,19.6,109.5,18.3],[79.8,9.5,81.8,7.5,81.5,6.2,80,6],[120,18.5,122.3,18.5,122,16,121.5,14,124,13,123,14,120.7,14.3,120,16],[122,7,125.5,9.5,126.5,7,125.5,5.8,123.5,7.5],[95.3,5.6,98.5,3.8,103.5,-0.7,106,-3,105.8,-5.8,102.2,-4,99.5,-0.5,96,3],[105.2,-6.8,108.5,-6.4,111,-6.5,114.5,-7.8,114,-8.7,108,-7.8],[109,1.5,111,2,113,3.2,115.5,5.2,117.8,7,119,5.2,117.8,1.5,118.5,0.8,117.5,-1.5,116,-3.8,114,-4,111,-3,110,-1.5,109,0],[119.4,-5.5,119.5,-2.5,119.8,0.5,121,1,124.5,1.2,122.5,-0.5,123.2,-1.5,121.5,-1.5,121.8,-4.5,120.5,-5.5],[131,-0.8,134,-0.8,138,-1.6,141,-2.6,145,-4.5,147.5,-6,147.8,-8,150.5,-10.5,147,-10,144,-7.8,141,-9,138,-8.3,137.5,-5.5,133.5,-4,132,-2.8],[113.5,-22,114,-26,115,-34,118,-35,123.5,-34,126,-32.5,131,-31.5,134,-32.8,135.5,-35,137.5,-33.5,138,-35.5,140,-38,144,-38.5,146.5,-39,150,-37.5,153,-31,153.5,-27,152,-24.5,149,-21,146,-18.8,145.3,-15,143.5,-14,142.5,-10.8,141.5,-13.5,141.5,-17,139,-17.5,136.5,-15.5,136,-12,132.5,-11.5,130,-12.5,129.2,-15,126,-14,123,-17,122,-18,119,-20,116,-20.7],[145,-40.8,148,-41,148,-43,146,-43.6,145,-42],[172.8,-34.5,175,-37,178.5,-37.7,177,-39.5,175,-41.5,174.5,-39.5,173.8,-36.5],[172.5,-40.5,174,-41.5,171,-44.3,169,-46.6,166.5,-46,168,-44]];
+function inside(lo,la,p){let c=false;for(let i=0,j=p.length-2;i<p.length;j=i,i+=2){const xi=p[i],yi=p[i+1],xj=p[j],yj=p[j+1];
+  if((yi>la)!==(yj>la)&&lo<(xj-xi)*(la-yi)/(yj-yi)+xi)c=!c}return c}
+const isLand=(lo,la)=>la<-72||LAND.some(p=>inside(lo,la,p));
+const SA=[],CA=[],LO=[],LD=[],step=4,rad=Math.PI/180;
+for(let la=-86;la<=86;la+=step){const c=Math.cos(la*rad),n=Math.max(1,Math.round(360*c/step));
+  for(let i=0;i<n;i++){const lo=-180+(i+.5)*360/n;SA.push(Math.sin(la*rad));CA.push(c);LO.push(lo*rad);LD.push(isLand(lo,la)?1:0)}}
+const TILT0=18*rad,LA=[.4,.62,.85,1],OA=[.07,.12,.18,.26];
+let w,h,d,th=90,tilt=TILT0,drag=null,last=0,vel=7;
+function size(){d=Math.min(devicePixelRatio||1,2);const r=cv.getBoundingClientRect();w=r.width;h=r.height;
+  cv.width=Math.round(w*d);cv.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);draw()}
+const MODES=["earth","solar","saturn","blackhole"];let mode=MODES.includes(S.globe)?S.globe:"earth";
+const tilt0=()=>mode==="saturn"?.42:mode==="blackhole"?.3:mode==="solar"?.8:TILT0;
+/* saturn: banded dotted sphere + ring particles (gaps like the Cassini division) */
+const RG=[];for(let r=1.32;r<2.3;r+=.04){if((r>1.76&&r<1.84)||(r>2.05&&r<2.08))continue;
+  const n=Math.round(6.2832*r/.05),a0=Math.random()*6.2832,sh=.35+.65*(.5+.5*Math.sin(r*37));for(let i=0;i<n;i++)RG.push(r,a0+i/n*6.2832,sh*(.7+Math.random()*.3))}
+function drawSaturn(){x.clearRect(0,0,w,h);
+  const R=Math.min(w,h)*.2,cx=w/2,cy=h/2,t=th*rad,ct=Math.cos(tilt),st=Math.sin(tilt),P=[[],[],[],[]],Q=[[],[],[],[]];
+  for(let i=0;i<SA.length;i++){const a=LO[i]+t,x0=CA[i]*Math.sin(a),y0=SA[i],z0=CA[i]*Math.cos(a),z1=y0*st+z0*ct;if(z1<=0)continue;
+    const y1=y0*ct-z0*st,band=.5+.5*Math.sin(y0*7+.8*Math.sin(y0*19)),b=Math.min(3,Math.floor(band*Math.min(1,z1*1.6)*3.99));P[b].push(cx+R*x0,cy-R*y1)}
+  for(let k=0;k<RG.length;k+=3){const r=RG[k],a=RG[k+1]+t*.35*Math.pow(1.32/r,1.5),X=r*Math.cos(a),Z=r*Math.sin(a),y1=-Z*st,z1=Z*ct;
+    if(z1<=0&&X*X+y1*y1<1)continue;Q[Math.min(3,Math.floor(RG[k+2]*(z1>0?1:.75)*3.99))].push(cx+R*X,cy-R*y1)}
+  const PA=[.22,.42,.68,.95],QA=[.18,.32,.5,.75],rp=Math.max(.7,R*.017),rr=Math.max(.6,R*.011);
+  const fillB=(B,A,r,br)=>{for(let b=0;b<4;b++){const q=B[b];if(!q.length)continue;x.fillStyle=ac(A[b],0,br);x.beginPath();
+    for(let k=0;k<q.length;k+=2){x.moveTo(q[k]+r,q[k+1]);x.arc(q[k],q[k+1],r,0,6.2832)}x.fill()}};
+  fillB(P,PA,rp,1);fillB(Q,QA,rr,0);
+  x.font="11px monospace";x.fillStyle=ac(.6);x.textBaseline="alphabetic";x.fillText("saturn  tilt "+Math.round(tilt/rad)+"\u00b0",14,h-12)}
+/* black hole: shadow, photon ring, accretion disk with the far side lensed over and under the hole */
+const BD=[];for(let r=1.7;r<4;r+=.07){const n=Math.round(6.2832*r/.15),a0=Math.random()*6.2832;for(let i=0;i<n;i++)BD.push(r+(Math.random()-.5)*.03,a0+i/n*6.2832,Math.random())}
+function drawBH(){x.clearRect(0,0,w,h);
+  const Rh=Math.min(w,h)*.1,cx=w/2,cy=h/2,f=Math.sin(Math.max(.05,Math.abs(tilt))),ph=th*rad*5,B=[[],[],[],[]],U=[[],[],[],[]],F=[[],[],[],[]];
+  const put=(A,v,X,Y)=>A[Math.min(3,Math.floor(Math.max(0,Math.min(.999,v))*4))].push(X,Y);
+  for(let k=0;k<BD.length;k+=3){const rd=BD[k],a=BD[k+1]+ph*Math.pow(1.7/rd,1.5),c=Math.cos(a),sn=Math.sin(a),
+      v=Math.pow(1.7/rd,.9)*(.6+.4*c)*(.7+BD[k+2]*.5),X=cx+Rh*rd*c;
+    if(sn>0)put(F,v,X,cy+Rh*rd*sn*f);
+    else{const ra=1.35+(rd-1.7)/2.3*1.05;put(B,v,X,cy+Rh*ra*sn);put(U,v*.5,X,cy-Rh*ra*.92*sn)}}
+  x.fillStyle="#040405";x.beginPath();x.arc(cx,cy,Rh,0,6.2832);x.fill();
+  x.lineWidth=1.5;x.strokeStyle=ac(.9,0,1);x.beginPath();x.arc(cx,cy,Rh*1.03,0,6.2832);x.stroke();
+  x.lineWidth=1;x.strokeStyle=ac(.22,0,1);x.beginPath();x.arc(cx,cy,Rh*1.12,0,6.2832);x.stroke();
+  const A=[.16,.38,.68,1],r=Math.max(.6,Rh*.024);
+  for(const [S_,al] of [[U,.7],[B,1],[F,1]])for(let b=0;b<4;b++){const q=S_[b];if(!q.length)continue;x.fillStyle=ac(A[b]*al,0,1);
+    for(let k=0;k<q.length;k+=2)x.fillRect(q[k]-r,q[k+1]-r,2*r,2*r)}
+  x.font="11px monospace";x.fillStyle=ac(.6);x.textBaseline="alphabetic";x.fillText("gargantua  incl "+Math.round(Math.asin(f)/rad)+"\u00b0",14,h-12)}
+/* solar system: dotted orbits (compressed spacing), planets moving at roughly kepler-ish relative speeds */
+const PL=[["mercury",.14,.24,1.5,.6],["venus",.23,.62,2.2,2.1],["earth",.32,1,2.4,4],["mars",.41,1.88,2,5.2],["jupiter",.56,11.9,4.6,1],["saturn",.71,29.5,4,3.3],["uranus",.85,84,3.1,5.8],["neptune",.97,165,3.1,2.5]];
+function drawSolar(){x.clearRect(0,0,w,h);
+  const cx=w/2,cy=h/2,f=Math.sin(Math.max(.05,Math.abs(tilt))),Rm=Math.min(w*.45,h*.42/f),sc=Math.max(.8,Math.min(1.5,Rm/160)),t=th*rad,rs=Math.max(5,Rm*.045),pts=[];
+  x.fillStyle=ac(.45,0,1);x.beginPath();
+  for(const p of PL){const r=Rm*p[1],n=Math.max(24,Math.round(6.2832*r/6));for(let i=0;i<n;i++){const a=i/n*6.2832,X=cx+r*Math.cos(a),Y=cy+r*f*Math.sin(a);x.moveTo(X+.7,Y);x.arc(X,Y,.7,0,6.2832)}
+    const a=p[4]+t*3.2*Math.pow(1/p[2],.6);pts.push({n:p[0],X:cx+r*Math.cos(a),Y:cy+r*f*Math.sin(a),s:p[3]*sc,b:Math.sin(a)<0})}
+  x.fill();
+  const planet=q=>{x.fillStyle=ac(1,0,1);x.beginPath();x.arc(q.X,q.Y,q.s,0,6.2832);x.fill();
+    if(q.n==="saturn"){x.lineWidth=1;x.strokeStyle=ac(.7,0,1);x.beginPath();x.ellipse(q.X,q.Y,q.s*2.1,q.s*2.1*Math.max(.25,f*.8),-.25,0,6.2832);x.stroke()}};
+  pts.filter(q=>q.b).forEach(planet);
+  for(const [m,a] of [[1.9,.18],[1.4,.35]]){x.fillStyle=ac(a,0,1);x.beginPath();const n=Math.round(6.2832*rs*m/4);for(let i=0;i<n;i++){const g=i/n*6.2832,X=cx+rs*m*Math.cos(g),Y=cy+rs*m*Math.sin(g);x.moveTo(X+.8,Y);x.arc(X,Y,.8,0,6.2832)}x.fill()}
+  x.fillStyle=ac(1,0,1);x.beginPath();x.arc(cx,cy,rs,0,6.2832);x.fill();
+  pts.filter(q=>!q.b).forEach(planet);
+  x.font="11px monospace";x.fillStyle=ac(.6);x.textBaseline="alphabetic";x.fillText("solar system  incl "+Math.round(Math.asin(f)/rad)+"\u00b0",14,h-12)}
+function draw(){if(mode==="solar")return drawSolar();if(mode==="saturn")return drawSaturn();if(mode==="blackhole")return drawBH();drawEarth()}
+window.setGlobe=()=>{const m=MODES.includes(S.globe)?S.globe:"earth";if(m!==mode){mode=m;tilt=tilt0()}draw()};
+cv.addEventListener("dblclick",()=>{S.globe=MODES[(MODES.indexOf(mode)+1)%MODES.length];persist();$("gl").value=S.globe;setGlobe()});
+function drawEarth(){x.clearRect(0,0,w,h);
+  const R=Math.min(w,h)*.42,cx=w/2,cy=h/2,t=th*rad,ct=Math.cos(tilt),st=Math.sin(tilt),B=[[],[],[],[],[],[],[],[]];
+  x.lineWidth=1;x.strokeStyle=ac(.45);x.beginPath();x.arc(cx,cy,R,0,6.2832);x.stroke();
+  for(let i=0;i<SA.length;i++){const a=LO[i]+t,x0=CA[i]*Math.sin(a),y0=SA[i],z0=CA[i]*Math.cos(a),
+      z1=y0*st+z0*ct;if(z1<=0)continue;
+    const y1=y0*ct-z0*st,b=LD[i]*4+Math.min(3,Math.floor(z1*4));B[b].push(cx+R*x0,cy-R*y1)}
+  const rl=Math.max(1,R*.017),ro=Math.max(.55,R*.006);
+  for(let b=0;b<8;b++){const q=B[b];if(!q.length)continue;const land=b>3,r=land?rl:ro;
+    x.fillStyle=land?ac(LA[b-4],0,1):ac(OA[b]);x.beginPath();
+    for(let k=0;k<q.length;k+=2){x.moveTo(q[k]+r,q[k+1]);x.arc(q[k],q[k+1],r,0,6.2832)}x.fill()}
+  const c=((-th%360)+540)%360-180;x.font="11px monospace";x.fillStyle=ac(.6);x.textBaseline="alphabetic";
+  x.fillText("lon "+(c<0?"-":"+")+Math.abs(c).toFixed(1).padStart(5,"0"),14,h-12)}
+function loop(ts){const dt=Math.min(.1,(ts-last)/1000||0);last=ts;if(!drag){vel+=(7-vel)*Math.min(1,dt*1.1);th=((th+vel*dt)%360+360)%360;tilt+=(tilt0()-tilt)*Math.min(1,dt*.8)}draw();requestAnimationFrame(loop)}
+const rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+cv.style.cursor="grab";cv.style.touchAction="pan-y";
+cv.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,t:performance.now(),v:0};vel=0;cv.setPointerCapture(e.pointerId);cv.style.cursor="grabbing"});
+cv.addEventListener("pointermove",e=>{if(!drag)return;const R=Math.min(w,h)*.42;
+  const dth=(e.clientX-drag.x)/R/rad,now=performance.now(),dtm=(now-drag.t)/1000;if(dtm>0)drag.v=drag.v*.5+dth/dtm*.5;drag.t=now;
+  th=((th+dth)%360+360)%360;tilt=Math.max(-1.5,Math.min(1.5,tilt+(e.clientY-drag.y)/R));
+  drag.x=e.clientX;drag.y=e.clientY;if(rm)draw()});
+const end=()=>{if(drag){vel=(performance.now()-drag.t)>120?7:Math.max(-900,Math.min(900,drag.v))}drag=null;cv.style.cursor="grab"};
+cv.addEventListener("pointerup",end);cv.addEventListener("pointercancel",end);
+tilt=tilt0();size();addEventListener("resize",size);if(window.ResizeObserver)new ResizeObserver(()=>{const r=cv.getBoundingClientRect();if(Math.round(r.width*d)!==cv.width||Math.round(r.height*d)!==cv.height)size()}).observe(cv.parentElement);
+if(!rm)requestAnimationFrame(loop)})();
+/* rtx 3060: dotted 3d graphics card, same style/accent colour as the globe. fans speed up with gpu load. */
+(function(){const cv=$("gc"),x=cv.getContext("2d");if(!cv||!x)return;
+const rad=Math.PI/180,body=[],F=[[-.5,0],[.5,0]],FN=9,FR=.37,Z=.14;
+const ln=(a,b,sp,w)=>{const dx=b[0]-a[0],dy=b[1]-a[1],dz=b[2]-a[2],n=Math.max(1,Math.round(Math.hypot(dx,dy,dz)/sp));for(let i=0;i<=n;i++)body.push(a[0]+dx*i/n,a[1]+dy*i/n,a[2]+dz*i/n,w)};
+const rect=(x0,y0,x1,y1,z,sp,w)=>{ln([x0,y0,z],[x1,y0,z],sp,w);ln([x1,y0,z],[x1,y1,z],sp,w);ln([x1,y1,z],[x0,y1,z],sp,w);ln([x0,y1,z],[x0,y0,z],sp,w)};
+/* shroud box: front + back outline, joined at the corners */
+rect(-1,-.45,1,.45,Z,.05,1);rect(-1,-.45,1,.45,-Z,.05,.5);
+for(const X of[-1,1])for(const Y of[-.45,.45])ln([X,Y,-Z],[X,Y,Z],.05,.7);
+/* front face dot grid (skips the fan circles) and sparser backplate grid */
+for(let i=-9;i<=9;i++)for(let j=-3;j<=3;j++){const X=i*.105,Y=j*.125;if(F.some(f=>Math.hypot(X-f[0],Y-f[1])<FR+.05))continue;body.push(X,Y,Z,.45)}
+for(let i=-6;i<=6;i++)for(let j=-3;j<=3;j++)body.push(i*.15,j*.125,-Z,.3);
+/* fan rings + hubs */
+for(const f of F){const n=44;for(let i=0;i<n;i++){const a=i/n*6.2832;body.push(f[0]+FR*Math.cos(a),f[1]+FR*Math.sin(a),Z,1);body.push(f[0]+(FR+.06)*Math.cos(a),f[1]+(FR+.06)*Math.sin(a),Z,.5)}
+  for(let i=0;i<12;i++){const a=i/12*6.2832;body.push(f[0]+.075*Math.cos(a),f[1]+.075*Math.sin(a),Z+.01,1)}}
+/* io bracket on the left end with port slots */
+rect(-1.04,-.5,-1.04,.58,0,.05,1);ln([-1.04,-.5,-Z],[-1.04,-.5,Z],.05,1);ln([-1.04,.58,-Z],[-1.04,.58,Z],.05,1);ln([-1.04,-.5,Z],[-1.04,.58,Z],.05,1);ln([-1.04,-.5,-Z],[-1.04,.58,-Z],.05,1);
+for(const y of[-.28,-.08,.12,.32])ln([-1.05,y,-.07],[-1.05,y,.07],.03,.9);
+/* pcie edge connector (bottom) and 8-pin power plug (top) */
+ln([-.8,-.52,-.02],[.1,-.52,-.02],.035,.9);ln([-.8,-.52,.02],[.1,-.52,.02],.035,.9);ln([-.8,-.45,0],[-.8,-.52,0],.03,.9);ln([.1,-.45,0],[.1,-.52,0],.03,.9);
+rect(.55,.45,.9,.55,0,.04,.9);ln([.55,.55,-.05],[.9,.55,-.05],.04,.9);ln([.55,.55,.05],[.9,.55,.05],.04,.9);
+const NB=body.length/4;
+let w,h,d,th=-35,vel=12,drag=null,last=0,fa=0,fv=2;
+const rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+function size(){d=Math.min(devicePixelRatio||1,2);const r=cv.getBoundingClientRect();w=r.width;h=r.height;if(!w||!h)return;cv.width=Math.round(w*d);cv.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);draw()}
+const B=[[[],[]],[[],[]],[[],[]],[[],[]]];
+function draw(){if(!w)return;x.clearRect(0,0,w,h);
+  const t=th*rad,cy_=Math.cos(t),sy=Math.sin(t),p=-.28,cp=Math.cos(p),sp=Math.sin(p),sc=Math.min(w*.41,h*.5)/1.05,cx=w/2,cy=h/2-4;
+  for(const q of B){q[0].length=0;q[1].length=0}
+  const put=(X,Y,Zz,wt)=>{const x1=X*cy_-Zz*sy,z1=X*sy+Zz*cy_,y2=Y*cp-z1*sp,z2=Y*sp+z1*cp,k=1/(1-z2*.16),v=(z2+1.3)/2.6,b=Math.max(0,Math.min(3,Math.floor(v*4)));
+    B[b][wt>.6?1:0].push(cx+x1*sc*k,cy-y2*sc*k,k)};
+  for(let i=0;i<NB;i++)put(body[i*4],body[i*4+1],body[i*4+2],body[i*4+3]);
+  /* fan blades: curved spokes that sweep, rotating with fa */
+  for(const f of F)for(let k=0;k<FN;k++){const a0=fa+k/FN*6.2832;
+    for(let r=.1;r<FR-.02;r+=.03){const a=a0+(r-.1)*2.6;put(f[0]+r*Math.cos(a),f[1]+r*Math.sin(a),Z+.005,1);
+      const a2=a+.2+(r-.1)*.5;if(r>.14)put(f[0]+r*Math.cos(a2),f[1]+r*Math.sin(a2),Z+.005,.5)}}
+  const A=[[.08,.2],[.16,.38],[.3,.62],[.5,.95]],rr=Math.max(.7,sc*.011);
+  for(let b=0;b<4;b++)for(let c=0;c<2;c++){const q=B[b][c];if(!q.length)continue;x.fillStyle=ac(A[b][c],0,c);x.beginPath();
+    for(let k=0;k<q.length;k+=3){const r=rr*q[k+2];x.moveTo(q[k]+r,q[k+1]);x.arc(q[k],q[k+1],r,0,6.2832)}x.fill()}
+}
+function loop(ts){const dt=Math.min(.1,(ts-last)/1000||0);last=ts;
+  if(!drag){vel+=(12-vel)*Math.min(1,dt*1.1);th=((th+vel*dt)%360+360)%360}
+  const u=window.gpuU==null?0:window.gpuU;fv+=((2+u*.14)-fv)*Math.min(1,dt*2);fa=(fa+fv*dt)%6.2832;
+  draw();requestAnimationFrame(loop)}
+cv.addEventListener("pointerdown",e=>{drag={x:e.clientX,t:performance.now(),v:0};vel=0;cv.setPointerCapture(e.pointerId);cv.style.cursor="grabbing"});
+cv.addEventListener("pointermove",e=>{if(!drag)return;const dth=(e.clientX-drag.x)*.8,now=performance.now(),dtm=(now-drag.t)/1000;if(dtm>0)drag.v=drag.v*.5+dth/dtm*.5;drag.t=now;th=((th+dth)%360+360)%360;drag.x=e.clientX;if(rm)draw()});
+const end=()=>{if(drag){vel=Math.max(-600,Math.min(600,drag.v))}drag=null;cv.style.cursor="grab"};
+cv.addEventListener("pointerup",end);cv.addEventListener("pointercancel",end);
+size();addEventListener("resize",size);if(document.fonts)document.fonts.ready.then(size);if(window.ResizeObserver)new ResizeObserver(()=>{const r=cv.getBoundingClientRect();if(Math.round(r.width*d)!==cv.width||Math.round(r.height*d)!==cv.height)size()}).observe(cv.parentElement);
+if(!rm)requestAnimationFrame(loop)})();
+/* tab title: types "Tyke" out, holds, erases back to "T", and loops */
+(function(){const W="Tyke";let n=1,up=true;
+  function tick(){document.title=W.slice(0,n);let d=up?220:130;
+    if(up){if(n===W.length){up=false;d=1600}else n++}else{if(n===1){up=true;d=500}else n--}
+    setTimeout(tick,d)}
+  tick()})();
+/* background: drifting grey dots that part around the cursor */
+(function(){const cv=$("bg"),x=cv.getContext("2d"),m={x:-9999,y:-9999},P=[];let w,h,t=0;
+  function size(){const d=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0);
+    const n=Math.min(140,Math.round(w*h/14000));
+    while(P.length<n){const a=Math.random()*6.283,s=.08+Math.random()*.18;P.push({x:Math.random()*w,y:Math.random()*h,bx:Math.cos(a)*s,by:Math.sin(a)*s,vx:0,vy:0,r:.6+Math.random()*1.1})}P.length=n}
+  function frame(){x.clearRect(0,0,w,h);t+=.01;
+    for(const p of P){const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);
+      if(d<170&&d>.1){const f=(1-d/170)*.12;p.vx+=dx/d*f;p.vy+=dy/d*f}
+      p.vx+=(p.bx+Math.sin(t+p.y*.004)*.05-p.vx)*.03;p.vy+=(p.by+Math.cos(t+p.x*.004)*.05-p.vy)*.03;
+      p.x+=p.vx;p.y+=p.vy;if(p.x<-10)p.x=w+10;else if(p.x>w+10)p.x=-10;if(p.y<-10)p.y=h+10;else if(p.y>h+10)p.y=-10}
+    x.lineWidth=1;
+    for(let i=0;i<P.length;i++){const a=P[i];
+      for(let j=i+1;j<P.length;j++){const b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<130){x.strokeStyle=ac((1-d/130)*.2,(a.x+b.x)/2/w*360);x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+      const d=Math.hypot(a.x-m.x,a.y-m.y);
+      if(d<200){x.strokeStyle=ac((1-d/200)*.4,a.x/w*360,1);x.beginPath();x.moveTo(a.x,a.y);x.lineTo(m.x,m.y);x.stroke()}
+      x.fillStyle=ac(d<200?.75:.45,a.x/w*360);x.beginPath();x.arc(a.x,a.y,a.r,0,6.283);x.fill()}
+    if(!still)requestAnimationFrame(frame)}
+  const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  size();addEventListener("resize",()=>{size();if(still)frame()});
+  addEventListener("mousemove",e=>{m.x=e.clientX;m.y=e.clientY});
+  document.addEventListener("mouseleave",()=>{m.x=m.y=-9999});
+  frame()})();
+function fitLogo(){const L=$("logo");if(!L)return;const sp=L.firstChild,n=sp.textContent.indexOf("\n");L.style.fontSize="10px";L.style.lineHeight="1";
+  const w=sp.getBoundingClientRect().width,av=L.clientWidth;if(!w||!av)return;L.style.fontSize=Math.min(16,10*av/w)+"px";
+  L.style.lineHeight=(sp.getBoundingClientRect().width/n*2)+"px"}
+addEventListener("resize",fitLogo);if(document.fonts)document.fonts.ready.then(fitLogo);
+vset(!!S.viz);
+if(matchMedia("(hover:none)").matches)$("q").blur();
+render();fitLogo();loadWx();setInterval(loadWx,9e5);moon();setInterval(moon,36e5);poll();
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# your own settings and logs - never publish these
+config.json
+*.log
+stats_server.log
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# old copies
+*.zip
