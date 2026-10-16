@@ -63,7 +63,7 @@ So it opens every time you start your browser:
 
 - **Chrome:** Settings > *On startup* > *Open a specific page* > *Add a new page* > paste `http://localhost:8787`. Also turn on *Show home button* under *Appearance* and set it to the same address.
 - **Edge:** Settings > *Start, home, and new tabs* > *Open these pages* > *Add a new page* > paste `http://localhost:8787`.
-- **Firefox:** Settings > *Home* > *Homepage and new windows* > *Custom URLs...* > paste `http://localhost:8787`.
+- **Firefox:** Settings > *Home* > *Homepage and new windows* > *Custom URLs...* > paste `http://localhost:8787`. Or use the [Firefox extension](#firefox-extension-optional) below, which also opens it on every new tab without showing the address.
 
 ### Step 6: Make it start with Windows (optional)
 
@@ -101,6 +101,33 @@ Right-click the tray icon for:
 | No GPU stats | GPU stats only work with NVIDIA graphics cards. CPU and RAM always work. |
 | "Could not listen" / port already in use | The start page is probably already running (check the tray icon). Otherwise change the `port` in `config.json` (see below). |
 | Anything else | Open `stats_server.log` in the start page folder. Errors are written there. |
+
+---
+
+## Firefox extension (optional)
+
+`tyke-startpage.xpi` (in the project folder) is a small Firefox extension that makes the start page your **new tab page**. Every new tab shows the start page, the address bar stays blank (no `localhost:8787` or server IP in it), and a toolbar button opens a new tab with the page on demand.
+
+The extension only shows the page, it doesn't run it. The start page still has to be running (the Windows tray app, or Docker), or new tabs will come up empty.
+
+### Install the extension
+
+The `.xpi` isn't signed by Mozilla, so normal Firefox won't keep it installed unless you use one of these:
+
+- **Firefox Developer Edition, Nightly, ESR or Unbranded:** open `about:config`, search for `xpinstall.signatures.required` and set it to `false`. Then open `about:addons`, click the gear icon, choose **Install Add-on From File...** and pick `tyke-startpage.xpi`. (Regular Firefox and Beta ignore this setting.)
+- **Any Firefox, temporarily:** open `about:debugging#/runtime/this-firefox`, click **Load Temporary Add-on...** and pick `tyke-startpage.xpi`. It's removed when you close Firefox, so you'd have to repeat this each time.
+- **Any Firefox, permanently:** sign the file for free at [addons.mozilla.org](https://addons.mozilla.org/developers/) by submitting it as **On your own** (unlisted), then install the signed file you get back.
+
+### Set the start page address
+
+The extension opens `http://tyke.start:8787` by default, which only works if you've set up that name (see *Using a custom address* below). To change it:
+
+1. Open `about:addons` and click **Tyke Start Page**, then **Preferences**.
+2. Type the address of your start page, for example `http://localhost:8787`, and click **Save**.
+
+If you want to reach the page from other devices over Tailscale, use the machine's Tailscale address (for example `http://100.x.y.z:8787`) and set `"host": "0.0.0.0"` in `config.json` so the server listens on it. Leave the box empty and save to go back to the default.
+
+To remove the extension, open `about:addons` and click **Remove** next to it.
 
 ---
 
